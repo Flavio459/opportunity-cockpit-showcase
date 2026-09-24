@@ -84,3 +84,8 @@ The private implementation also explores provider-neutral AI boundaries, evaluat
 
 Flávio Souza Barros  
 Engineering × AI × Automation × Project Systems
+
+
+## License / reuse
+
+This repository is source-visible for portfolio evaluation, but it is **not released under an open-source license**. See [LICENSE](LICENSE).
