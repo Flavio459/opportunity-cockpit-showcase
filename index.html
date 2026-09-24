@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Opportunity Cockpit public portfolio showcase">
+  <title>Opportunity Cockpit Showcase</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">PORTFOLIO SHOWCASE · SYNTHETIC DATA</p>
+        <h1>Opportunity Cockpit</h1>
+        <p class="lede">Evidence-aware opportunity analysis with explicit uncertainty, verifier warnings and a human gate before any external action.</p>
+      </div>
+      <div class="badge">Core remains private</div>
+    </header>
+
+    <section class="flow" aria-label="Architecture flow">
+      <span>Discovery</span><b>→</b><span>Normalization</span><b>→</b><span>Evidence</span><b>→</b><span>AI Analysis</span><b>→</b><span>Decision</span><b>→</b><span>Human Gate</span>
+    </section>
+
+    <section class="command" id="summary"></section>
+
+    <section class="toolbar">
+      <div>
+        <h2>Decision queue</h2>
+        <p>All companies, jobs and evidence below are fictional.</p>
+      </div>
+      <select id="filter" aria-label="Filter opportunities">
+        <option value="all">All states</option>
+        <option value="READY_FOR_REVIEW">Ready for review</option>
+        <option value="NEEDS_INFORMATION">Needs information</option>
+        <option value="HOLD">Hold</option>
+      </select>
+    </section>
+
+    <section id="cards" class="cards" aria-live="polite"></section>
+
+    <section class="principles">
+      <article>
+        <h3>Evidence before claims</h3>
+        <p>A requirement is only marked supported when the demo evidence explicitly supports it. Keyword overlap alone is not proof.</p>
+      </article>
+      <article>
+        <h3>Unknown stays unknown</h3>
+        <p>Missing compensation, workload or geography is displayed as missing instead of being inferred.</p>
+      </article>
+      <article>
+        <h3>Human control</h3>
+        <p>No button sends a proposal, message or application. The system prepares a decision; a person decides.</p>
+      </article>
+    </section>
+
+    <footer>
+      <p>Public showcase by Flávio Souza Barros · Engineering × AI × Automation × Project Systems</p>
+      <p><a href="docs/ARCHITECTURE.md">Architecture</a> · <a href="docs/PUBLICATION_BOUNDARY.md">Publication boundary</a> · <a href="SECURITY.md">Security</a></p>
+    </footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
