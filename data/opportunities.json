@@ -1,0 +1,72 @@
+[
+  {
+    "id":"demo-001",
+    "company":"Northstar Robotics",
+    "title":"Technical Project Manager — AI Automation",
+    "modality":"Remote",
+    "contract_type":"Contract",
+    "state":"READY_FOR_REVIEW",
+    "fit":"Strong",
+    "conditions":"Good",
+    "compensation":"USD 55–70/h",
+    "workload":"20 h/week",
+    "signals":[
+      {"kind":"good","text":"Mandatory evidence supported"},
+      {"kind":"good","text":"Remote from Brazil allowed"},
+      {"kind":"warn","text":"Spoken English: verify interview format"}
+    ],
+    "evidence":[
+      {"requirement":"Project coordination","status":"confirmed","note":"Synthetic portfolio evidence explicitly supports delivery coordination."},
+      {"requirement":"AI workflow design","status":"confirmed","note":"Synthetic architecture evidence explicitly supports workflow design."},
+      {"requirement":"n8n","status":"not confirmed","note":"Mention absent from admitted synthetic evidence."}
+    ],
+    "verifier":"No unsupported mandatory claim detected. One desired tool remains unconfirmed.",
+    "next_action":"Human reviews the evidence gap before preparing an application."
+  },
+  {
+    "id":"demo-002",
+    "company":"Atlas Grid Systems",
+    "title":"AI Solutions Engineer",
+    "modality":"Remote",
+    "contract_type":"Full-time",
+    "state":"NEEDS_INFORMATION",
+    "fit":"Strong",
+    "conditions":"Unknown",
+    "compensation":null,
+    "workload":null,
+    "signals":[
+      {"kind":"good","text":"Architecture evidence supported"},
+      {"kind":"warn","text":"Compensation missing"},
+      {"kind":"warn","text":"Workload missing"}
+    ],
+    "evidence":[
+      {"requirement":"LLM integration","status":"confirmed","note":"Synthetic project evidence supports provider integration work."},
+      {"requirement":"Production observability","status":"not confirmed","note":"Evidence is insufficient for a production-scale claim."}
+    ],
+    "verifier":"The technical fit may be strong, but commercial conditions cannot be assessed from missing data.",
+    "next_action":"Collect compensation, workload and location constraints before prioritization."
+  },
+  {
+    "id":"demo-003",
+    "company":"Cedar Labs",
+    "title":"Senior ML Platform Architect",
+    "modality":"Hybrid",
+    "contract_type":"Permanent",
+    "state":"HOLD",
+    "fit":"Partial",
+    "conditions":"Weak",
+    "compensation":"not informed",
+    "workload":"40 h/week",
+    "signals":[
+      {"kind":"risk","text":"On-site requirement"},
+      {"kind":"risk","text":"Mandatory ML platform evidence missing"},
+      {"kind":"warn","text":"Compensation not informed"}
+    ],
+    "evidence":[
+      {"requirement":"Distributed ML platform ownership","status":"missing","note":"No admitted synthetic evidence supports this mandatory requirement."},
+      {"requirement":"Python","status":"confirmed","note":"Synthetic evidence supports Python usage, but not the broader platform requirement."}
+    ],
+    "verifier":"A partial keyword match must not be promoted into evidence for a mandatory architecture requirement.",
+    "next_action":"Do not prioritize unless new evidence or job conditions materially change."
+  }
+]
