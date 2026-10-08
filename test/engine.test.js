@@ -53,3 +53,30 @@ test('TDD: Fallback scenario retrieval defaults to English when language is unsu
   assert.ok(fallback, 'Should return fallback');
   assert.strictEqual(fallback.senderName, 'VP of Operations (Dubai)', 'Should default to English VP sender name');
 });
+
+test('TDD: Audio and video media assets must exist on disk and meet quality standards', () => {
+  const fs = require('node:fs');
+  const path = require('node:path');
+
+  const assetsDir = path.resolve(__dirname, '../assets');
+  const videoPath = path.join(assetsDir, 'walkthrough_executive.mp4');
+  assert.ok(fs.existsSync(videoPath), 'walkthrough_executive.mp4 must exist');
+  const videoStats = fs.statSync(videoPath);
+  assert.ok(videoStats.size > 100000, `Video file size (${videoStats.size} bytes) must be > 100KB`);
+
+  const audioDir = path.join(assetsDir, 'audio');
+  const requiredAudios = [
+    'voice_memo_en.mp3',
+    'voice_memo_ar.mp3',
+    'voice_memo_pt.mp3',
+    'narration_walkthrough_en.mp3'
+  ];
+
+  requiredAudios.forEach(fileName => {
+    const audioPath = path.join(audioDir, fileName);
+    assert.ok(fs.existsSync(audioPath), `Audio file ${fileName} must exist`);
+    const audioStats = fs.statSync(audioPath);
+    assert.ok(audioStats.size > 20000, `Audio file ${fileName} (${audioStats.size} bytes) must be > 20KB`);
+  });
+});
+

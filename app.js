@@ -7,6 +7,7 @@ let isShortTone = false;
 let isApproved = false;
 let audioContext = null;
 let waveInterval = null;
+let simAudioInstance = null;
 
 // Helper to access i18n
 function getI18n() {
@@ -66,6 +67,19 @@ function setLanguage(lang) {
   const htmlRoot = document.getElementById("htmlRoot");
   const i18n = getI18n();
   const dict = (i18n.UI_TRANSLATIONS && i18n.UI_TRANSLATIONS[lang]) || {};
+
+  // Stop any playing audio when switching language
+  if (simAudioInstance) {
+    simAudioInstance.pause();
+    simAudioInstance = null;
+    stopWaveAnimation();
+    const btnIcon = document.getElementById("simAudioIcon");
+    const btnLabel = document.getElementById("simAudioLabel");
+    if (btnIcon && btnLabel) {
+      btnIcon.innerText = "▶";
+      btnLabel.innerText = dict.playVoiceBtn || "Play Voice";
+    }
+  }
 
   // RTL direction for Arabic
   if (lang === "ar") {
@@ -158,80 +172,59 @@ function loadScenario(scenarioId) {
   document.getElementById("executionNotice").classList.add("hidden");
 }
 
-// Real Voice Audio Playback via Web Speech API + Waveform Animation
-let isSpeaking = false;
-
+// Real Voice Audio Playback via pre-rendered executive MP3s + Waveform Animation
 function playSimulationAudio() {
   getAudioContext();
   playChime("click");
 
   const i18n = getI18n();
-  const data = (i18n.getScenario && i18n.getScenario(currentScenario, currentLang)) || null;
-  const transcript = data ? data.transcript : "";
-
-  const bars = document.querySelectorAll(".waveform-bar");
+  const dict = (i18n.UI_TRANSLATIONS && i18n.UI_TRANSLATIONS[currentLang]) || {};
   const btnIcon = document.getElementById("simAudioIcon");
   const btnLabel = document.getElementById("simAudioLabel");
-  const dict = (i18n.UI_TRANSLATIONS && i18n.UI_TRANSLATIONS[currentLang]) || {};
 
-  // If already speaking, cancel
-  if (isSpeaking) {
-    if (window.speechSynthesis) {
-      window.speechSynthesis.cancel();
-    }
+  // If already playing, stop
+  if (simAudioInstance && !simAudioInstance.paused) {
+    simAudioInstance.pause();
+    simAudioInstance.currentTime = 0;
+    simAudioInstance = null;
     stopWaveAnimation();
     btnIcon.innerText = "▶";
     btnLabel.innerText = dict.playVoiceBtn || "Play Voice";
-    isSpeaking = false;
     return;
   }
 
-  // Start waveform animation
+  // Create real audio instance for current language (en, ar, pt)
+  const audioSrc = `assets/audio/voice_memo_${currentLang}.mp3`;
+  simAudioInstance = new Audio(audioSrc);
+
   startWaveAnimation();
   btnIcon.innerText = "⏹";
   btnLabel.innerText = dict.playingVoiceBtn || "Playing...";
-  isSpeaking = true;
 
-  // Speak via Web Speech API if supported
-  if ('speechSynthesis' in window && transcript) {
-    window.speechSynthesis.cancel(); // Clear any queued speech
-    const utterance = new SpeechSynthesisUtterance(transcript);
-    
-    if (currentLang === "ar") {
-      utterance.lang = "ar-SA";
-    } else if (currentLang === "pt") {
-      utterance.lang = "pt-BR";
-    } else {
-      utterance.lang = "en-US";
-    }
-    
-    utterance.rate = 1.0;
-    utterance.pitch = 1.0;
+  simAudioInstance.onended = () => {
+    stopWaveAnimation();
+    btnIcon.innerText = "▶";
+    btnLabel.innerText = dict.playVoiceBtn || "Play Voice";
+    simAudioInstance = null;
+  };
 
-    utterance.onend = () => {
-      stopWaveAnimation();
-      btnIcon.innerText = "▶";
-      btnLabel.innerText = dict.playVoiceBtn || "Play Voice";
-      isSpeaking = false;
-    };
+  simAudioInstance.onerror = (e) => {
+    console.warn("Audio file playback error, falling back", e);
+    stopWaveAnimation();
+    btnIcon.innerText = "▶";
+    btnLabel.innerText = dict.playVoiceBtn || "Play Voice";
+    simAudioInstance = null;
+  };
 
-    utterance.onerror = () => {
-      stopWaveAnimation();
-      btnIcon.innerText = "▶";
-      btnLabel.innerText = dict.playVoiceBtn || "Play Voice";
-      isSpeaking = false;
-    };
-
-    window.speechSynthesis.speak(utterance);
-  } else {
-    // Fallback timer if speech synthesis is not supported
+  simAudioInstance.play().catch(err => {
+    console.warn("Audio play blocked or requires user gesture:", err);
     setTimeout(() => {
       stopWaveAnimation();
       btnIcon.innerText = "▶";
       btnLabel.innerText = dict.playVoiceBtn || "Play Voice";
-      isSpeaking = false;
-    }, 4500);
-  }
+      simAudioInstance = null;
+    }, 4000);
+  });
 }
 
 function startWaveAnimation() {
@@ -317,11 +310,18 @@ function executeHumanApproval() {
 // Toggle Video Walkthrough section
 function toggleVideoWalkthrough() {
   const section = document.getElementById("videoWalkthroughSection");
+  const video = document.getElementById("walkthroughVideo");
   if (section.classList.contains("hidden")) {
     section.classList.remove("hidden");
     section.scrollIntoView({ behavior: "smooth" });
+    if (video) {
+      video.play().catch(e => console.log("User interaction required for video play:", e));
+    }
   } else {
     section.classList.add("hidden");
+    if (video) {
+      video.pause();
+    }
   }
 }
 

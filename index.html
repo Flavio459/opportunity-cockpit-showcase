@@ -121,11 +121,11 @@
         </div>
 
         <div class="flex flex-wrap items-center gap-3 pt-2">
-          <a href="#simulator" class="px-5 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-black font-extrabold text-xs rounded-lg transition shadow-md flex items-center gap-2" data-i18n="launchSimulatorBtn">
+          <a href="#simulator" class="px-4 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-black font-bold text-xs rounded-lg transition shadow-md flex items-center gap-2" data-i18n="launchSimulatorBtn">
             <span>🎮 Test Live Interactive Simulator →</span>
           </a>
-          <button onclick="toggleVideoWalkthrough()" class="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-750 text-white font-medium text-xs rounded-lg transition flex items-center gap-2" data-i18n="watchWalkthroughBtn">
-            <span>🎬 Watch 60s Executive Walkthrough</span>
+          <button onclick="toggleVideoWalkthrough()" class="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-700 text-white font-medium text-xs rounded-lg transition flex items-center gap-2" data-i18n="watchWalkthroughBtn">
+            <span>🎬 Watch Executive Walkthrough</span>
           </button>
         </div>
       </div>
@@ -153,7 +153,8 @@
         <div class="flex items-center gap-2.5">
           <span class="text-xl">🎬</span>
           <div>
-            <h3 class="text-base font-bold text-white" data-i18n="walkthroughTitle">60-Second Guided Walkthrough (Executive Narration)</h3>
+            <h3 class="text-base font-bold text-white" data-i18n="walkthroughTitle">Executive Guided Walkthrough (1080p Video & Narration)</h3>
+            <span class="text-xs text-slate-400 font-mono" data-i18n="walkthroughSubtitle">Real High-Resolution MP4 Production · Synchronized Executive Audio</span>
           </div>
         </div>
         <button onclick="toggleVideoWalkthrough()" class="text-slate-400 hover:text-white font-mono text-xs px-2.5 py-1 bg-slate-800 rounded-md">
@@ -162,44 +163,40 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
-        <div class="md:col-span-8 bg-slate-950 rounded-xl border border-slate-800 p-4 space-y-3">
-          <div class="flex items-center justify-between text-xs font-mono">
-            <span class="text-slate-400" data-i18n="walkthroughAudioLabel">Audio Narration: Senior British Consultant (C-Suite Tone)</span>
-            <span class="text-cyan-400 font-bold" id="videoTimer">00:00 / 01:05</span>
+        <div class="md:col-span-8 bg-slate-950 rounded-xl border border-slate-800 p-3 space-y-3">
+          <!-- Real HTML5 Video Player -->
+          <div class="relative rounded-lg overflow-hidden border border-slate-800 bg-black aspect-video flex items-center justify-center">
+            <video id="walkthroughVideo" controls playsinline preload="metadata" class="w-full h-full object-contain" poster="assets/showcase_i18n_preview.png">
+              <source src="assets/walkthrough_executive.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
           </div>
-          
-          <!-- Audio Waveform Player -->
-          <div class="bg-slate-900 border border-slate-800 rounded-lg p-3 space-y-2">
-            <div class="flex items-center gap-3">
-              <button id="playAudioBtn" onclick="toggleWalkthroughAudio()" class="w-10 h-10 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-black font-extrabold flex items-center justify-center text-sm transition shrink-0">
-                ▶
-              </button>
-              <div class="w-full">
-                <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-1">
-                  <span>Track: Executive Briefing</span>
-                  <span id="audioTrackStatus" data-i18n="walkthroughStatusReady">Click Play to Listen</span>
-                </div>
-                <div class="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
-                  <div id="audioProgressBar" class="h-full bg-gradient-to-r from-cyan-400 to-emerald-400 w-0 transition-all duration-300"></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Dynamic Subtitle / Narration Box -->
-            <div class="bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-xs text-slate-300 font-mono leading-relaxed" id="narrationText">
-              "Welcome. In this 60-second walkthrough, observe how executive leadership in Dubai eliminates operational bottlenecks with zero rogue AI. Notice the 1-Click Human Decision Gate..."
-            </div>
+          <div class="flex items-center justify-between text-xs font-mono px-1">
+            <span class="text-slate-400" data-i18n="walkthroughAudioLabel">Audio Narration: Senior British Consultant (C-Suite Tone)</span>
+            <span class="text-cyan-400 font-bold">00:25 · 1080p MP4</span>
           </div>
         </div>
 
-        <div class="md:col-span-4 space-y-2 text-xs">
-          <div class="bg-slate-950 border border-slate-800 rounded-lg p-3 space-y-1.5">
-            <span class="font-mono text-cyan-400 font-bold uppercase text-[10px]">What This Demonstrates</span>
-            <p class="text-slate-300 leading-relaxed text-[11px]">
-              • <strong>Instant Voice Transcription</strong> into executive bullet points.<br>
-              • <strong>Pre-drafted High-Stakes Deliverables</strong> awaiting review.<br>
-              • <strong>Deterministic Gate</strong>: Zero external client actions without explicit 1-click confirmation.
-            </p>
+        <div class="md:col-span-4 space-y-3 text-xs">
+          <div class="bg-slate-950 border border-slate-800 rounded-lg p-3.5 space-y-2">
+            <span class="font-mono text-cyan-400 font-bold uppercase text-[10px] block">Demonstrated C-Suite Flow</span>
+            <ul class="space-y-2 text-slate-300 leading-relaxed text-[11px]">
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-400 font-mono font-bold">1.</span>
+                <span><strong>Voice Ingestion:</strong> Audio note processed and sanitized in 1.2s with zero data leakage.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-400 font-mono font-bold">2.</span>
+                <span><strong>AI Synthesis:</strong> 3-bullet decision digest and pre-drafted deliverables prepared instantly.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-400 font-mono font-bold">3.</span>
+                <span><strong>Deterministic Human Gate:</strong> 1-Click sign-off before any external dispatch.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="p-2.5 bg-emerald-950/40 border border-emerald-900/60 rounded-lg text-[11px] font-mono text-emerald-400">
+            ⚡ Ready for deployment in Dubai & global enterprise stacks in &lt; 14 days.
           </div>
         </div>
       </div>
