@@ -1,79 +1,28 @@
-// Executive AI Command Center — Interactive Simulator Engine
+// Executive AI Command Center — Multilingual Simulator Engine
 // Developed for C-Suite Leadership Operations (Dubai / Worldwide Remote)
 
-const scenarios = {
-  audio_memo: {
-    channelBadge: "Slack Voice Audio",
-    senderName: "VP of Operations (Dubai)",
-    duration: "0:32 audio memo",
-    transcript: '"Flávio, we just received Apex Capital\'s revision. They want to proceed with Milestone 1 ($50k), but need the delivery onboarding moved to Thursday morning. Can we confirm this before their committee meets at 2 PM?"',
-    bullets: [
-      { id: "01", title: "Revenue Milestone", desc: "Confirms $50,000 for Milestone 1 with approved commercial terms." },
-      { id: "02", title: "Calendar Alignment", desc: "Onboarding shifted to Thursday 10:00 AM GST (Delivery team capacity reserved)." },
-      { id: "03", title: "Time Sensitivity", desc: "Requires 1-click authorization prior to Apex 2:00 PM GST committee meeting." }
-    ],
-    draft: `Subject: Confirmation: Apex Capital Milestone 1 & Thursday Onboarding
-
-Dear Tariq,
-Thank you for the update. We are pleased to confirm Milestone 1 ($50,000) under the agreed terms. Our technical delivery leads are already scheduled to kick off the executive onboarding session this Thursday at 10:00 AM GST.
-
-Looking forward to our kickoff.
-Best regards,
-[Executive Leadership]`,
-    shortDraft: `Tariq: Milestone 1 ($50k) is confirmed. Executive onboarding locked for Thursday at 10:00 AM GST. See you then. - [Leadership]`,
-    executedNotice: "Email sent to Apex Capital · ClickUp sprint updated · Calendar locked"
-  },
-  proposal_request: {
-    channelBadge: "Inbound RFP / Email",
-    senderName: "Managing Director, Emaar Strategic Projects",
-    duration: "Direct Enterprise Inquiry",
-    transcript: '"We are seeking an AI Implementation Consultant to audit our commercial asset workflows and build an automated lead routing system. Estimated budget is $85,000 over 3 months. Can you submit the executive proposal today?"',
-    bullets: [
-      { id: "01", title: "Enterprise Lead", desc: "Commercial asset intake workflow ($85,000 project size)." },
-      { id: "02", title: "SLA Expectation", desc: "Response requested within current business day." },
-      { id: "03", title: "Governance Need", desc: "Requires Human Decision Gate across all external client quotes." }
-    ],
-    draft: `Subject: Executive Proposal & Roadmap: Commercial Asset Workflow AI Integration
-
-Dear Director,
-Thank you for inviting our consultation. We specialize in zero-friction AI implementations for C-Suite leadership in Dubai. We have structured a 3-sprint phased deployment with Sprint 1 delivering measurable efficiency in under 14 days.
-
-Attached is our 1-page Executive Strategy Blueprint for your review.
-Best regards,
-Flávio Barros`,
-    shortDraft: `Director: Proposal received and acknowledged. We operate on a Sprint-driven model with quick wins in Week 1. Strategy blueprint attached for 1-click review. - Flávio Barros`,
-    executedNotice: "Proposal dispatched to Emaar · CRM record created · Executive follow-up scheduled"
-  },
-  board_digest: {
-    channelBadge: "Cross-Department Aggregator",
-    senderName: "Automated Operations Synthesizer",
-    duration: "End-of-Week Executive Digest",
-    transcript: '"Consolidating weekly logs across Operations, Client Sales, and Delivery. 42 workflow executions completed with 100% human-in-the-loop compliance. Total leadership hours saved: 8.5h."',
-    bullets: [
-      { id: "01", title: "Executive Time Recovered", desc: "8.5 direct leadership hours saved from administrative triage." },
-      { id: "02", title: "Operational Zero-Error", desc: "100% compliance on Human Decision Gates (Zero unapproved emails sent)." },
-      { id: "03", title: "Action Required", desc: "1-click sign-off to distribute weekly brief to Board of Directors." }
-    ],
-    draft: `Executive Weekly Summary for Board of Directors:
-
-1. Operational Efficiency: Leadership recovered 8.5 hours this week via AI workflow triage.
-2. Department SLAs: 96% of cross-department inquiries resolved without synchronous meetings.
-3. Security & Safety: 100% of client deliverables approved through the Human Decision Gate.
-4. Next Sprint Focus: Deploying automated delivery handoffs for client accounts.`,
-    shortDraft: `Board Digest: 8.5h saved this week, zero rogue AI incidents, 96% SLA met without extra meetings. Sprint 2 ready. - Flávio Barros`,
-    executedNotice: "Digest published to Board portal · Slack executive channel notified · Archived to Notion"
-  }
-};
-
+let currentLang = "en";
 let currentScenario = "audio_memo";
 let isShortTone = false;
 let isApproved = false;
 let audioContext = null;
+let waveInterval = null;
+
+// Helper to access i18n
+function getI18n() {
+  return window.SHOWCASE_I18N || {};
+}
 
 // Initialize sound context on user interaction
 function getAudioContext() {
   if (!audioContext) {
-    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (AudioCtx) {
+      audioContext = new AudioCtx();
+    }
+  }
+  if (audioContext && audioContext.state === 'suspended') {
+    audioContext.resume();
   }
   return audioContext;
 }
@@ -82,6 +31,8 @@ function getAudioContext() {
 function playChime(type = "success") {
   try {
     const ctx = getAudioContext();
+    if (!ctx) return;
+
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
     osc.connect(gain);
@@ -90,120 +41,236 @@ function playChime(type = "success") {
     if (type === "success") {
       osc.type = "sine";
       osc.frequency.setValueAtTime(523.25, ctx.currentTime); // C5
-      osc.frequency.exponentialRampToValueAtTime(659.25, ctx.currentTime + 0.1); // E5
-      osc.frequency.exponentialRampToValueAtTime(783.99, ctx.currentTime + 0.25); // G5
-      gain.gain.setValueAtTime(0.15, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.6);
+      osc.frequency.exponentialRampToValueAtTime(659.25, ctx.currentTime + 0.08); // E5
+      osc.frequency.exponentialRampToValueAtTime(783.99, ctx.currentTime + 0.2); // G5
+      gain.gain.setValueAtTime(0.12, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5);
       osc.start();
-      osc.stop(ctx.currentTime + 0.6);
+      osc.stop(ctx.currentTime + 0.5);
     } else {
-      osc.type = "triangle";
+      osc.type = "sine";
       osc.frequency.setValueAtTime(440, ctx.currentTime); // A4
-      gain.gain.setValueAtTime(0.1, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.2);
+      gain.gain.setValueAtTime(0.08, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
       osc.start();
-      osc.stop(ctx.currentTime + 0.2);
+      osc.stop(ctx.currentTime + 0.15);
     }
   } catch (e) {
-    console.log("Audio feedback: ", e);
+    console.log("Audio chime feedback fallback", e);
   }
+}
+
+// Set Active Language
+function setLanguage(lang) {
+  currentLang = lang;
+  const htmlRoot = document.getElementById("htmlRoot");
+  const i18n = getI18n();
+  const dict = (i18n.UI_TRANSLATIONS && i18n.UI_TRANSLATIONS[lang]) || {};
+
+  // RTL direction for Arabic
+  if (lang === "ar") {
+    htmlRoot.setAttribute("dir", "rtl");
+  } else {
+    htmlRoot.setAttribute("dir", "ltr");
+  }
+
+  // Update Language Buttons
+  ["en", "ar", "pt"].forEach((l) => {
+    const btn = document.getElementById(`lang-btn-${l}`);
+    if (btn) {
+      if (l === lang) {
+        btn.className = "px-2.5 py-1 rounded-md transition font-semibold bg-cyan-500 text-black";
+      } else {
+        btn.className = "px-2.5 py-1 rounded-md transition text-slate-400 hover:text-white";
+      }
+    }
+  });
+
+  // Update all [data-i18n] text
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    const key = el.getAttribute("data-i18n");
+    if (dict[key]) {
+      el.innerText = dict[key];
+    }
+  });
+
+  // Re-render current scenario in selected language
+  loadScenario(currentScenario);
+  playChime("click");
 }
 
 // Load Scenario
 function loadScenario(scenarioId) {
   currentScenario = scenarioId;
-  const data = scenarios[scenarioId];
+  const i18n = getI18n();
+  const data = (i18n.getScenario && i18n.getScenario(scenarioId, currentLang)) || null;
+  if (!data) return;
+
   isShortTone = false;
   isApproved = false;
 
-  // Update tabs
+  // Update Scenario Tabs
   ["audio_memo", "proposal_request", "board_digest"].forEach((id, idx) => {
     const btn = document.getElementById(`btn-scenario-${idx + 1}`);
-    if (id === scenarioId) {
-      btn.className = "px-3.5 py-1.5 rounded-xl text-xs font-semibold font-mono transition bg-cyan-500 text-black font-bold";
-    } else {
-      btn.className = "px-3.5 py-1.5 rounded-xl text-xs font-semibold font-mono transition text-slate-400 hover:text-white";
+    if (btn) {
+      if (id === scenarioId) {
+        btn.className = "px-3 py-1.5 rounded-md text-xs font-semibold font-mono transition bg-cyan-500 text-black";
+      } else {
+        btn.className = "px-3 py-1.5 rounded-md text-xs font-medium font-mono transition text-slate-400 hover:text-white";
+      }
     }
   });
 
-  // Populate data
+  // Populate Ingestion Card
   document.getElementById("inputChannelBadge").innerText = data.channelBadge;
   document.getElementById("senderName").innerText = data.senderName;
   document.getElementById("memoDuration").innerText = data.duration;
-  document.getElementById("rawInputTranscript").innerText = data.transcript;
+  document.getElementById("rawInputTranscript").innerText = `"${data.transcript}"`;
 
   // Bullets
   const bulletsContainer = document.getElementById("synthesisBullets");
   bulletsContainer.innerHTML = data.bullets.map(b => `
-    <li class="flex items-start gap-2 bg-slate-950 p-2.5 rounded-xl border border-slate-800/80">
+    <li class="flex items-start gap-2 bg-slate-950 p-2.5 rounded-lg border border-slate-800/80">
       <span class="text-emerald-400 font-bold font-mono">${b.id}.</span>
       <span><strong>${b.title}:</strong> ${b.desc}</span>
     </li>
   `).join("");
 
-  // Draft
+  // Draft Text
   document.getElementById("draftActionText").innerText = data.draft;
 
   // Reset Gate State
+  const dict = (i18n.UI_TRANSLATIONS && i18n.UI_TRANSLATIONS[currentLang]) || {};
   const gateState = document.getElementById("gateStateText");
   gateState.className = "text-[11px] font-mono text-amber-400 font-semibold";
-  gateState.innerText = "● AWAITING HUMAN APPROVAL";
+  gateState.innerText = dict.gatePendingText || "● AWAITING HUMAN APPROVAL";
 
   const approveBtn = document.getElementById("approveBtn");
-  approveBtn.className = "py-3 px-4 bg-emerald-500 hover:bg-emerald-400 active:scale-95 text-black font-extrabold text-xs rounded-xl flex items-center justify-center gap-2 transition shadow-lg shadow-emerald-500/20";
-  approveBtn.innerHTML = "<span>✓ APPROVE & DISPATCH</span>";
+  approveBtn.className = "py-2.5 px-4 bg-emerald-500 hover:bg-emerald-400 active:scale-95 text-black font-semibold text-xs rounded-lg flex items-center justify-center gap-1.5 transition shadow-md";
   approveBtn.disabled = false;
+  document.getElementById("approveBtnLabel").innerText = dict.btnApprove || "✓ Approve & Dispatch";
+
+  const calibrateBtnLabel = document.getElementById("calibrateBtnLabel");
+  if (calibrateBtnLabel) {
+    calibrateBtnLabel.innerText = dict.btnCalibrateShort || "⚡ Shorter Tone";
+  }
 
   document.getElementById("executionNotice").classList.add("hidden");
-  playChime("click");
 }
 
-// Play simulation audio wave animation
-let waveInterval = null;
+// Real Voice Audio Playback via Web Speech API + Waveform Animation
+let isSpeaking = false;
+
 function playSimulationAudio() {
+  getAudioContext();
   playChime("click");
+
+  const i18n = getI18n();
+  const data = (i18n.getScenario && i18n.getScenario(currentScenario, currentLang)) || null;
+  const transcript = data ? data.transcript : "";
+
   const bars = document.querySelectorAll(".waveform-bar");
-  const btn = document.getElementById("simAudioBtn");
-  
-  if (waveInterval) {
-    clearInterval(waveInterval);
-    waveInterval = null;
-    btn.innerText = "▶ Play Voice";
-    bars.forEach(b => b.style.height = "12px");
+  const btnIcon = document.getElementById("simAudioIcon");
+  const btnLabel = document.getElementById("simAudioLabel");
+  const dict = (i18n.UI_TRANSLATIONS && i18n.UI_TRANSLATIONS[currentLang]) || {};
+
+  // If already speaking, cancel
+  if (isSpeaking) {
+    if (window.speechSynthesis) {
+      window.speechSynthesis.cancel();
+    }
+    stopWaveAnimation();
+    btnIcon.innerText = "▶";
+    btnLabel.innerText = dict.playVoiceBtn || "Play Voice";
+    isSpeaking = false;
     return;
   }
 
-  btn.innerText = "⏹ Playing...";
+  // Start waveform animation
+  startWaveAnimation();
+  btnIcon.innerText = "⏹";
+  btnLabel.innerText = dict.playingVoiceBtn || "Playing...";
+  isSpeaking = true;
+
+  // Speak via Web Speech API if supported
+  if ('speechSynthesis' in window && transcript) {
+    window.speechSynthesis.cancel(); // Clear any queued speech
+    const utterance = new SpeechSynthesisUtterance(transcript);
+    
+    if (currentLang === "ar") {
+      utterance.lang = "ar-SA";
+    } else if (currentLang === "pt") {
+      utterance.lang = "pt-BR";
+    } else {
+      utterance.lang = "en-US";
+    }
+    
+    utterance.rate = 1.0;
+    utterance.pitch = 1.0;
+
+    utterance.onend = () => {
+      stopWaveAnimation();
+      btnIcon.innerText = "▶";
+      btnLabel.innerText = dict.playVoiceBtn || "Play Voice";
+      isSpeaking = false;
+    };
+
+    utterance.onerror = () => {
+      stopWaveAnimation();
+      btnIcon.innerText = "▶";
+      btnLabel.innerText = dict.playVoiceBtn || "Play Voice";
+      isSpeaking = false;
+    };
+
+    window.speechSynthesis.speak(utterance);
+  } else {
+    // Fallback timer if speech synthesis is not supported
+    setTimeout(() => {
+      stopWaveAnimation();
+      btnIcon.innerText = "▶";
+      btnLabel.innerText = dict.playVoiceBtn || "Play Voice";
+      isSpeaking = false;
+    }, 4500);
+  }
+}
+
+function startWaveAnimation() {
+  const bars = document.querySelectorAll(".waveform-bar");
+  if (waveInterval) clearInterval(waveInterval);
   waveInterval = setInterval(() => {
     bars.forEach(bar => {
-      const h = Math.floor(Math.random() * 24) + 6;
+      const h = Math.floor(Math.random() * 22) + 4;
       bar.style.height = `${h}px`;
     });
   }, 100);
+}
 
-  setTimeout(() => {
-    if (waveInterval) {
-      clearInterval(waveInterval);
-      waveInterval = null;
-      btn.innerText = "▶ Play Voice";
-      bars.forEach(b => b.style.height = "12px");
-    }
-  }, 4000);
+function stopWaveAnimation() {
+  if (waveInterval) {
+    clearInterval(waveInterval);
+    waveInterval = null;
+  }
+  const bars = document.querySelectorAll(".waveform-bar");
+  bars.forEach(b => b.style.height = "8px");
 }
 
 // Toggle Draft Tone
 function calibrateTone() {
-  const data = scenarios[currentScenario];
+  const i18n = getI18n();
+  const data = (i18n.getScenario && i18n.getScenario(currentScenario, currentLang)) || null;
+  if (!data) return;
+
   const draftBox = document.getElementById("draftActionText");
-  const calibrateBtn = document.getElementById("calibrateBtn");
+  const calibrateBtnLabel = document.getElementById("calibrateBtnLabel");
+  const dict = (i18n.UI_TRANSLATIONS && i18n.UI_TRANSLATIONS[currentLang]) || {};
 
   isShortTone = !isShortTone;
   if (isShortTone) {
     draftBox.innerText = data.shortDraft;
-    calibrateBtn.innerHTML = "<span>⚡ Standard Executive Tone</span>";
+    calibrateBtnLabel.innerText = dict.btnCalibrateStandard || "⚡ Standard Tone";
   } else {
     draftBox.innerText = data.draft;
-    calibrateBtn.innerHTML = "<span>⚡ Shorter Executive Tone</span>";
+    calibrateBtnLabel.innerText = dict.btnCalibrateShort || "⚡ Shorter Tone";
   }
   playChime("click");
 }
@@ -213,29 +280,34 @@ function executeHumanApproval() {
   isApproved = true;
   playChime("success");
 
+  const i18n = getI18n();
+  const dict = (i18n.UI_TRANSLATIONS && i18n.UI_TRANSLATIONS[currentLang]) || {};
+  const data = (i18n.getScenario && i18n.getScenario(currentScenario, currentLang)) || {};
+
   // Animate button
   const approveBtn = document.getElementById("approveBtn");
-  approveBtn.className = "py-3 px-4 bg-emerald-600 text-white font-extrabold text-xs rounded-xl flex items-center justify-center gap-2 transition shadow-lg";
-  approveBtn.innerHTML = "<span>✓ APPROVED & EXECUTED</span>";
+  approveBtn.className = "py-2.5 px-4 bg-emerald-600 text-white font-semibold text-xs rounded-lg flex items-center justify-center gap-1.5 transition shadow-sm";
+  document.getElementById("approveBtnLabel").innerText = dict.btnApproved || "✓ Approved & Executed";
   approveBtn.disabled = true;
 
   // Gate label
   const gateState = document.getElementById("gateStateText");
   gateState.className = "text-[11px] font-mono text-emerald-400 font-bold";
-  gateState.innerText = "✓ AUTHORIZED BY HUMAN GATE (Flávio Barros)";
+  gateState.innerText = dict.gateApprovedText || "✓ AUTHORIZED BY HUMAN GATE (Flávio Barros)";
 
   // Notice
   const notice = document.getElementById("executionNotice");
-  notice.querySelector("span:last-child").innerText = scenarios[currentScenario].executedNotice;
+  document.getElementById("executionSubnotice").innerText = data.executedNotice || "Workflow dispatched successfully.";
   notice.classList.remove("hidden");
 
-  // Update Tickers
+  // Update Tickers with $39/hr formula
+  const savings = i18n.calculateSavings ? i18n.calculateSavings(8.5, 0.7, 39.0) : { totalHours: 9.2, totalValue: 358.80 };
   const hoursTicker = document.getElementById("hoursSavedTicker");
-  hoursTicker.innerText = "9.2 hrs (+0.7h)";
+  hoursTicker.innerText = `${savings.totalHours} hrs (+0.7h)`;
   hoursTicker.classList.add("text-emerald-300");
 
   const valueTicker = document.getElementById("valueSavedTicker");
-  valueTicker.innerText = "$1,580.00";
+  valueTicker.innerText = `$${savings.totalValue.toFixed(2)}`;
 
   const salesBadge = document.getElementById("salesStatusBadge");
   salesBadge.className = "px-2 py-0.5 bg-emerald-950 text-emerald-400 font-mono text-[10px] font-bold rounded";
@@ -253,11 +325,11 @@ function toggleVideoWalkthrough() {
   }
 }
 
-// Simulated Walkthrough Audio Playback
+// Walkthrough Audio Progress Simulator
 let audioPlaying = false;
 let audioTimer = null;
 let currentSeconds = 0;
-const totalDuration = 65; // 1:05 min
+const totalDuration = 65;
 
 const narrationLines = [
   { at: 0, text: '"Welcome. In this 60-second walkthrough, observe how executive leadership in Dubai eliminates operational bottlenecks with zero rogue AI."' },
@@ -271,16 +343,18 @@ const narrationLines = [
 function toggleWalkthroughAudio() {
   const playBtn = document.getElementById("playAudioBtn");
   const trackStatus = document.getElementById("audioTrackStatus");
+  const i18n = getI18n();
+  const dict = (i18n.UI_TRANSLATIONS && i18n.UI_TRANSLATIONS[currentLang]) || {};
 
   if (audioPlaying) {
     clearInterval(audioTimer);
     audioPlaying = false;
     playBtn.innerText = "▶";
-    trackStatus.innerText = "Paused";
+    trackStatus.innerText = dict.walkthroughStatusPaused || "Paused";
   } else {
     audioPlaying = true;
     playBtn.innerText = "⏸";
-    trackStatus.innerText = "Playing Voice Track...";
+    trackStatus.innerText = dict.walkthroughStatusPlaying || "Playing Voice Track...";
     playChime("click");
 
     audioTimer = setInterval(() => {
@@ -290,20 +364,17 @@ function toggleWalkthroughAudio() {
         audioPlaying = false;
         currentSeconds = 0;
         playBtn.innerText = "▶";
-        trackStatus.innerText = "Completed";
+        trackStatus.innerText = dict.walkthroughStatusDone || "Completed";
         return;
       }
 
-      // Progress bar
       const pct = (currentSeconds / totalDuration) * 100;
       document.getElementById("audioProgressBar").style.width = `${pct}%`;
 
-      // Timer display
       const mins = String(Math.floor(currentSeconds / 60)).padStart(2, "0");
       const secs = String(currentSeconds % 60).padStart(2, "0");
       document.getElementById("videoTimer").innerText = `${mins}:${secs} / 01:05`;
 
-      // Update subtitle line
       const matched = [...narrationLines].reverse().find(l => currentSeconds >= l.at);
       if (matched) {
         document.getElementById("narrationText").innerText = matched.text;
@@ -312,7 +383,7 @@ function toggleWalkthroughAudio() {
   }
 }
 
-// Initial scenario load
+// Initial boot
 document.addEventListener("DOMContentLoaded", () => {
-  loadScenario("audio_memo");
+  setLanguage("en");
 });
