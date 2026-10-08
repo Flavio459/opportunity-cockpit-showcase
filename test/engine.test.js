@@ -59,17 +59,27 @@ test('TDD: Audio and video media assets must exist on disk and meet quality stan
   const path = require('node:path');
 
   const assetsDir = path.resolve(__dirname, '../assets');
-  const videoPath = path.join(assetsDir, 'walkthrough_executive.mp4');
-  assert.ok(fs.existsSync(videoPath), 'walkthrough_executive.mp4 must exist');
-  const videoStats = fs.statSync(videoPath);
-  assert.ok(videoStats.size > 100000, `Video file size (${videoStats.size} bytes) must be > 100KB`);
+  const requiredVideos = [
+    'walkthrough_executive.mp4',
+    'walkthrough_executive_pt.mp4',
+    'walkthrough_executive_ar.mp4'
+  ];
+
+  requiredVideos.forEach(vFile => {
+    const videoPath = path.join(assetsDir, vFile);
+    assert.ok(fs.existsSync(videoPath), `${vFile} must exist`);
+    const videoStats = fs.statSync(videoPath);
+    assert.ok(videoStats.size > 500000, `Video file ${vFile} (${videoStats.size} bytes) must be > 500KB`);
+  });
 
   const audioDir = path.join(assetsDir, 'audio');
   const requiredAudios = [
     'voice_memo_en.mp3',
     'voice_memo_ar.mp3',
     'voice_memo_pt.mp3',
-    'narration_walkthrough_en.mp3'
+    'narration_walkthrough_en.mp3',
+    'narration_walkthrough_pt.mp3',
+    'narration_walkthrough_ar.mp3'
   ];
 
   requiredAudios.forEach(fileName => {

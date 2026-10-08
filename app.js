@@ -110,6 +110,7 @@ function setLanguage(lang) {
 
   // Re-render current scenario in selected language
   loadScenario(currentScenario);
+  updateWalkthroughVideo(lang);
   playChime("click");
 }
 
@@ -305,6 +306,37 @@ function executeHumanApproval() {
   const salesBadge = document.getElementById("salesStatusBadge");
   salesBadge.className = "px-2 py-0.5 bg-emerald-950 text-emerald-400 font-mono text-[10px] font-bold rounded";
   salesBadge.innerText = "RESOLVED";
+}
+
+// Switch Walkthrough Video per Language
+function updateWalkthroughVideo(lang) {
+  const video = document.getElementById("walkthroughVideo");
+  const durationBadge = document.getElementById("videoDurationBadge");
+  if (!video) return;
+
+  const isPlaying = !video.paused && !video.ended;
+  let targetSrc = "assets/walkthrough_executive.mp4";
+  let durationText = "00:25 · 1080p MP4";
+
+  if (lang === "ar") {
+    targetSrc = "assets/walkthrough_executive_ar.mp4";
+    durationText = "00:36 · 1080p MP4";
+  } else if (lang === "pt") {
+    targetSrc = "assets/walkthrough_executive_pt.mp4";
+    durationText = "00:34 · 1080p MP4";
+  }
+
+  if (durationBadge) {
+    durationBadge.innerText = durationText;
+  }
+
+  if (!video.src.includes(targetSrc)) {
+    video.src = targetSrc;
+    video.load();
+    if (isPlaying) {
+      video.play().catch(e => console.log("Video play request on lang switch:", e));
+    }
+  }
 }
 
 // Toggle Video Walkthrough section

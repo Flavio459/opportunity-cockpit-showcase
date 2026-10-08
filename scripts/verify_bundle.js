@@ -15,11 +15,14 @@ console.log("✔ Gate 1 & 3: HTML structure & video element verified");
 
 // 2. Verify media assets on disk
 const assetsDir = path.resolve(__dirname, '../assets');
-const videoFile = path.join(assetsDir, 'walkthrough_executive.mp4');
-assert.ok(fs.existsSync(videoFile), 'Video file must exist');
-const videoStats = fs.statSync(videoFile);
-assert.ok(videoStats.size > 500000, `Video file must be substantive (>500KB). Actual: ${videoStats.size}`);
-console.log(`✔ Gate 1: Real MP4 video asset verified (${(videoStats.size / 1024).toFixed(1)} KB)`);
+const videoFiles = ['walkthrough_executive.mp4', 'walkthrough_executive_pt.mp4', 'walkthrough_executive_ar.mp4'];
+videoFiles.forEach(vFile => {
+  const p = path.join(assetsDir, vFile);
+  assert.ok(fs.existsSync(p), `Video file ${vFile} must exist`);
+  const s = fs.statSync(p);
+  assert.ok(s.size > 500000, `Video file ${vFile} must be substantive (>500KB). Actual: ${s.size}`);
+  console.log(`✔ Gate 1: Real MP4 video asset ${vFile} verified (${(s.size / 1024).toFixed(1)} KB)`);
+});
 
 const audioFiles = ['voice_memo_en.mp3', 'voice_memo_ar.mp3', 'voice_memo_pt.mp3'];
 audioFiles.forEach(file => {
