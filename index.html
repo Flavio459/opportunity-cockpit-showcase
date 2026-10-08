@@ -1,105 +1,523 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Opportunity Cockpit public portfolio showcase">
-  <title>Opportunity Cockpit Showcase</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Executive AI Command Center — C-Suite Operations & Workflow Integration</title>
+  <meta name="description" content="Interactive C-Suite AI Operations Simulator: Morning Briefing Triage, Department Pulse Radar, and deterministic 1-Click Human Decision Gate. Built for executive leadership in Dubai and global enterprises.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    :root {
+      --bg: #070B14;
+      --card-bg: #0D1424;
+      --border: #1E293B;
+      --emerald: #10B981;
+      --cyan: #06B6D4;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: #F8FAFC;
+    }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    .font-display { font-family: 'Space Grotesk', sans-serif; }
+    .glow-emerald {
+      box-shadow: 0 0 25px rgba(16, 185, 129, 0.25);
+    }
+    .glow-cyan {
+      box-shadow: 0 0 25px rgba(6, 182, 212, 0.2);
+    }
+    .waveform-bar {
+      transition: height 0.15s ease-in-out;
+    }
+    @keyframes pulse-slow {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.85; transform: scale(1.02); }
+    }
+    .animate-pulse-slow {
+      animation: pulse-slow 3s infinite ease-in-out;
+    }
+  </style>
 </head>
-<body>
-  <main class="shell">
-    <header class="hero">
+<body class="min-h-screen selection:bg-emerald-500 selection:text-black antialiased flex flex-col justify-between">
+
+  <!-- Top Announcement Bar -->
+  <div class="bg-gradient-to-r from-slate-900 via-cyan-950/60 to-slate-900 border-b border-slate-800 text-[11px] font-mono py-2 px-4 text-center text-slate-300">
+    <span class="inline-flex items-center gap-1.5">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+      <strong class="text-cyan-400 font-bold uppercase tracking-wider">LIVE INTERACTIVE SHOWCASE</strong> · Tailored for C-Suite Leadership & Executive Operations in Dubai (UAE)
+    </span>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between border-b border-slate-800/80">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-emerald-500 flex items-center justify-center font-display font-extrabold text-black text-xl shadow-lg shadow-cyan-500/20">
+        Ω
+      </div>
       <div>
-        <p class="eyebrow">PORTFOLIO SHOWCASE · SYNTHETIC DEMO</p>
-        <h1>Opportunity Cockpit</h1>
-        <p class="subheading">Intelligent Decision Support System</p>
-        <p class="lede">Helps businesses evaluate market opportunities, compare risks, and make decisions with confidence, organization, and speed. The system gathers scattered information, highlights critical attention points, and maintains a clear audit history of how every decision was reached.</p>
+        <span class="font-display font-bold text-lg tracking-tight text-white block">Executive AI Command Center</span>
+        <span class="text-[10px] font-mono text-slate-400 tracking-wider uppercase">C-Suite Workflow Integration & Governance</span>
       </div>
-      <div class="badge">Core remains private</div>
-    </header>
+    </div>
+    <div class="flex items-center gap-3">
+      <span class="hidden sm:inline-flex items-center gap-2 px-3 py-1 bg-emerald-950/70 border border-emerald-800/60 rounded-full text-emerald-400 text-xs font-mono font-semibold">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> 1-Click Human Gate Active
+      </span>
+      <a href="#simulator" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white rounded-xl text-xs font-semibold transition shadow-sm">
+        Launch Simulator ↓
+      </a>
+    </div>
+  </nav>
 
-    <section class="value-architecture" aria-label="Business Value">
-      <div class="value-card">
-        <span class="value-tag">1. Problem</span>
-        <h3>Information Overload & Slow Decisions</h3>
-        <p>Market opportunities arrive scattered across platforms, emails, and briefs with incomplete requirements, hiding risks and slowing down strategic evaluation.</p>
-      </div>
-      <div class="value-card">
-        <span class="value-tag">2. Solution</span>
-        <h3>Intelligent Structured Screening</h3>
-        <p>Gathers criteria, normalizes compensation and workload expectations, and verifies factual evidence before surfacing high-confidence recommendations.</p>
-      </div>
-      <div class="value-card">
-        <span class="value-tag">3. Business Benefit</span>
-        <h3>Speed, Governance & Error Prevention</h3>
-        <p>Saves 5–10 hours weekly of executive filtering time, flags missing information proactively, and ensures every decision is defensible and traceable.</p>
-      </div>
-    </section>
+  <!-- Hero Section -->
+  <main class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12 space-y-12 flex-grow">
 
-    <section class="flow" aria-label="Operational workflow">
-      <span>Opportunity Intake</span><b>→</b><span>Rule & Scope Check</span><b>→</b><span>Smart Evidence Fit</span><b>→</b><span>Risk Screening</span><b>→</b><span>Human Decision Gate</span>
-    </section>
-
-    <details class="tech-differentiators">
-      <summary>Engineering Depth & Technical Differentiators (Secondary Layer)</summary>
-      <div class="tech-grid">
-        <div class="tech-card">
-          <h4>How It Works</h4>
-          <ul>
-            <li><strong>AI Decision Support:</strong> Extracts semantic criteria from unstructured postings without making ungrounded assumptions.</li>
-            <li><strong>Evidence Verification:</strong> Matches project requirements against proven capabilities only when explicit evidence exists.</li>
-            <li><strong>Traceable Audit History:</strong> Every metric and recommendation includes an inspection trail of underlying sources.</li>
-          </ul>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <div class="lg:col-span-7 space-y-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700 text-xs font-mono text-cyan-300">
+          <span>⚡ Principle: Think Big, Start Small, Scale Fast</span>
         </div>
-        <div class="tech-card">
-          <h4>Enterprise Safety Controls</h4>
-          <ul>
-            <li><strong>Human-in-the-Loop Gate:</strong> External actions (proposals, outreach, agreements) strictly require conscious human authorization.</li>
-            <li><strong>Uncertainty Handling:</strong> Missing variables remain explicitly marked as missing rather than being fabricated.</li>
-            <li><strong>Zero Private Leakage:</strong> Protected configurations and production models stay sandboxed; demo runs synthetic data.</li>
-          </ul>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.15]">
+          Turn Generative AI into <span class="bg-gradient-to-r from-cyan-400 via-emerald-400 to-emerald-300 bg-clip-text text-transparent">Trusted Executive Habits</span> — Zero Chaos.
+        </h1>
+        <p class="text-slate-400 text-sm md:text-base leading-relaxed max-w-2xl">
+          Executives in fast-paced hubs like Dubai cannot waste 15 hours a week in status syncs, manual triage, and vendor noise. We deploy custom, low-friction AI workflows that recover <strong>5–10 hours/week from Sprint 1</strong>, protected by a deterministic <strong>1-Click Human Decision Gate</strong>.
+        </p>
+
+        <!-- Metric Cards -->
+        <div class="grid grid-cols-3 gap-3 pt-2">
+          <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4">
+            <span class="block text-2xl font-extrabold text-emerald-400 font-mono">5–10h</span>
+            <span class="text-[11px] text-slate-400 font-medium">Weekly Leadership Time Saved</span>
+          </div>
+          <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4">
+            <span class="block text-2xl font-extrabold text-cyan-400 font-mono">100%</span>
+            <span class="text-[11px] text-slate-400 font-medium">Deterministic Human Gate Control</span>
+          </div>
+          <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4">
+            <span class="block text-2xl font-extrabold text-purple-400 font-mono">&lt; 14 Days</span>
+            <span class="text-[11px] text-slate-400 font-medium">Sprint 1 Quick-Win Deployment</span>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3 pt-2">
+          <a href="#simulator" class="px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-black font-extrabold text-sm rounded-xl transition shadow-lg shadow-emerald-500/20 flex items-center gap-2">
+            <span>🎮 Test Live Interactive Simulator</span>
+            <span>→</span>
+          </a>
+          <button onclick="toggleVideoWalkthrough()" class="px-5 py-3 bg-slate-900 hover:bg-slate-850 border border-slate-700/80 text-white font-semibold text-sm rounded-xl transition flex items-center gap-2">
+            <span>🎬 Watch 60s Executive Walkthrough</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Hero Visual Representation -->
+      <div class="lg:col-span-5 relative">
+        <div class="relative rounded-3xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900 group">
+          <img src="assets/hero_executive_dubai.jpg" alt="Executive AI Command Center deployed in Dubai office" class="w-full h-auto object-cover transform group-hover:scale-105 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+          <div class="absolute bottom-4 left-4 right-4 p-4 bg-slate-900/90 backdrop-blur-md border border-slate-800/80 rounded-2xl">
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-[10px] font-mono text-cyan-400 uppercase font-bold tracking-wider">Architecture in Production</span>
+                <p class="text-xs font-bold text-white mt-0.5">C-Suite Operations Dashboard (Dubai Skyview)</p>
+              </div>
+              <span class="px-2.5 py-1 bg-emerald-950 border border-emerald-800 text-emerald-400 text-[10px] font-mono font-bold rounded-lg">VERIFIED</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Video Walkthrough Modal / Section -->
+    <div id="videoWalkthroughSection" class="hidden bg-slate-900 border border-cyan-500/40 rounded-3xl p-6 md:p-8 space-y-4 shadow-2xl transition-all">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+        <div class="flex items-center gap-3">
+          <span class="text-2xl">🎬</span>
+          <div>
+            <span class="text-xs font-mono font-bold text-cyan-400 uppercase">Executive Briefing Audio & Video</span>
+            <h3 class="text-lg font-bold text-white">60-Second Guided Walkthrough (Executive Narration)</h3>
+          </div>
+        </div>
+        <button onclick="toggleVideoWalkthrough()" class="text-slate-400 hover:text-white font-mono text-xs px-3 py-1 bg-slate-800 rounded-lg">
+          ✕ Close
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+        <div class="md:col-span-8 bg-slate-950 rounded-2xl border border-slate-800 p-5 space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono text-slate-400">Audio Narration: <strong class="text-emerald-400">Senior British Consultant (C-Suite Tone)</strong></span>
+            <span class="text-xs font-mono text-cyan-400 font-bold" id="videoTimer">00:00 / 01:05</span>
+          </div>
+          
+          <!-- Simulated Audio Waveform Player -->
+          <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-3">
+            <div class="flex items-center gap-3">
+              <button id="playAudioBtn" onclick="toggleWalkthroughAudio()" class="w-12 h-12 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-black font-extrabold flex items-center justify-center text-lg transition shadow-lg shrink-0">
+                ▶
+              </button>
+              <div class="w-full">
+                <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-1">
+                  <span>Voice Track: "Executive AI Operations Overview"</span>
+                  <span id="audioTrackStatus">Click Play to Listen</span>
+                </div>
+                <div class="h-2 w-full bg-slate-800 rounded-full overflow-hidden">
+                  <div id="audioProgressBar" class="h-full bg-gradient-to-r from-cyan-400 to-emerald-400 w-0 transition-all duration-300"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dynamic Subtitle / Narration Box -->
+            <div class="bg-slate-950 border border-slate-800/80 rounded-xl p-3 text-xs text-slate-300 font-mono leading-relaxed" id="narrationText">
+              "Welcome. In this 60-second walkthrough, observe how executive leadership in Dubai eliminates operational bottlenecks with zero rogue AI. Notice the 1-Click Human Decision Gate..."
+            </div>
+          </div>
+        </div>
+
+        <div class="md:col-span-4 space-y-3">
+          <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 text-xs space-y-2">
+            <span class="font-mono text-cyan-400 font-bold uppercase text-[10px]">What This Demonstrates</span>
+            <p class="text-slate-300 leading-relaxed">
+              • <strong>Instant Voice Transcription</strong> into executive bullet points.<br>
+              • <strong>Pre-drafted High-Stakes Deliverables</strong> awaiting review.<br>
+              • <strong>Deterministic Gate</strong>: The AI never contacts external clients without your explicit 1-click confirmation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- THE INTERACTIVE SIMULATOR (CORE WORKSPACE) -->
+    <section id="simulator" class="space-y-6 pt-4">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-800 pb-5">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-cyan-950/80 border border-cyan-800/70 rounded-full text-cyan-400 text-xs font-mono font-bold uppercase tracking-wider mb-2">
+            <span>🎮 Live Interactive Simulation Engine</span>
+          </div>
+          <h2 class="text-2xl md:text-3xl font-extrabold text-white tracking-tight">
+            C-Suite AI Control Cockpit
+          </h2>
+          <p class="text-slate-400 text-sm mt-1">
+            Experience how the system handles high-velocity executive triage and protects corporate governance.
+          </p>
+        </div>
+
+        <!-- Scenario Selector -->
+        <div class="flex items-center gap-2 bg-slate-900 border border-slate-800 p-1.5 rounded-2xl shrink-0">
+          <button onclick="loadScenario('audio_memo')" id="btn-scenario-1" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold font-mono transition bg-cyan-500 text-black font-bold">
+            01. Voice Memo Triage
+          </button>
+          <button onclick="loadScenario('proposal_request')" id="btn-scenario-2" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold font-mono transition text-slate-400 hover:text-white">
+            02. High-Stakes Proposal
+          </button>
+          <button onclick="loadScenario('board_digest')" id="btn-scenario-3" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold font-mono transition text-slate-400 hover:text-white">
+            03. Cross-Dept Digest
+          </button>
+        </div>
+      </div>
+
+      <!-- Simulator Main Stage -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+        <!-- Left Column: Intake & Raw Trigger (4 Cols) -->
+        <div class="lg:col-span-4 bg-slate-900/90 border border-slate-800 rounded-3xl p-5 md:p-6 space-y-5 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+              <span class="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider">Incoming Input Channel</span>
+              <span id="inputChannelBadge" class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-800">
+                Slack Voice Audio
+              </span>
+            </div>
+
+            <!-- Voice Simulator Card -->
+            <div class="bg-slate-950 border border-slate-800 rounded-2xl p-4 space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-sm">🎙️</span>
+                  <div>
+                    <span id="senderName" class="text-xs font-bold text-white block">VP of Operations (Dubai)</span>
+                    <span class="text-[10px] font-mono text-slate-500" id="memoDuration">0:32 audio memo</span>
+                  </div>
+                </div>
+                <button onclick="playSimulationAudio()" id="simAudioBtn" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-cyan-400 text-xs font-mono rounded-lg transition border border-slate-700">
+                  ▶ Play Voice
+                </button>
+              </div>
+
+              <!-- Animated Soundwave bars -->
+              <div class="flex items-center gap-1 h-8 px-2 bg-slate-900 rounded-xl overflow-hidden" id="soundwaveContainer">
+                <div class="waveform-bar w-1.5 bg-cyan-500 rounded-full h-3"></div>
+                <div class="waveform-bar w-1.5 bg-cyan-400 rounded-full h-6"></div>
+                <div class="waveform-bar w-1.5 bg-cyan-500 rounded-full h-2"></div>
+                <div class="waveform-bar w-1.5 bg-cyan-400 rounded-full h-7"></div>
+                <div class="waveform-bar w-1.5 bg-cyan-500 rounded-full h-4"></div>
+                <div class="waveform-bar w-1.5 bg-cyan-400 rounded-full h-5"></div>
+                <div class="waveform-bar w-1.5 bg-cyan-500 rounded-full h-2"></div>
+                <div class="waveform-bar w-1.5 bg-cyan-400 rounded-full h-7"></div>
+                <div class="waveform-bar w-1.5 bg-cyan-500 rounded-full h-4"></div>
+                <div class="waveform-bar w-1.5 bg-cyan-400 rounded-full h-3"></div>
+              </div>
+
+              <!-- Transcript Box -->
+              <div class="text-xs text-slate-300 font-mono leading-relaxed bg-slate-900/60 p-3 rounded-xl border border-slate-800/80" id="rawInputTranscript">
+                "Flávio, we just received Apex Capital's revision. They want to proceed with Milestone 1 ($50k), but need the delivery onboarding moved to Thursday morning. Can we confirm this before their committee meets at 2 PM?"
+              </div>
+            </div>
+
+            <!-- Processing Status -->
+            <div class="flex items-center gap-2 text-xs font-mono text-emerald-400 bg-emerald-950/40 border border-emerald-900/60 p-3 rounded-xl">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+              <span>Sanitized & Analyzed in 1.2s · Zero Data Leakage</span>
+            </div>
+          </div>
+
+          <div class="text-[11px] text-slate-500 font-mono pt-3 border-t border-slate-800">
+            Intake Source: Encrypted Gateway · Model: Private Sandboxed LLM
+          </div>
+        </div>
+
+        <!-- Center Column: Synthesized Intelligence & Action Draft (5 Cols) -->
+        <div class="lg:col-span-5 bg-slate-900/90 border border-slate-800 rounded-3xl p-5 md:p-6 space-y-5 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+              <span class="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider">AI Executive Synthesis</span>
+              <span class="text-[10px] font-mono text-emerald-400 font-bold bg-emerald-950 px-2 py-0.5 rounded">Action Ready</span>
+            </div>
+
+            <!-- 3 Bullet Decision Digest -->
+            <div class="space-y-2">
+              <span class="text-xs font-bold text-white uppercase font-mono tracking-wider block">Strategic Impact Summary:</span>
+              <ul class="space-y-2 text-xs text-slate-300" id="synthesisBullets">
+                <li class="flex items-start gap-2 bg-slate-950 p-2.5 rounded-xl border border-slate-800/80">
+                  <span class="text-emerald-400 font-bold font-mono">01.</span>
+                  <span><strong>Revenue Milestone:</strong> Confirms $50,000 for Milestone 1 with approved commercial terms.</span>
+                </li>
+                <li class="flex items-start gap-2 bg-slate-950 p-2.5 rounded-xl border border-slate-800/80">
+                  <span class="text-emerald-400 font-bold font-mono">02.</span>
+                  <span><strong>Calendar Alignment:</strong> Onboarding shifted to Thursday 10:00 AM GST (Delivery team notified & capacity reserved).</span>
+                </li>
+                <li class="flex items-start gap-2 bg-slate-950 p-2.5 rounded-xl border border-slate-800/80">
+                  <span class="text-emerald-400 font-bold font-mono">03.</span>
+                  <span><strong>Time Sensitivity:</strong> Requires 1-click authorization prior to Apex 2:00 PM GST committee meeting.</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Generated Draft Action -->
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-white uppercase font-mono tracking-wider">Pre-Drafted Action (Awaiting Gate):</span>
+                <span class="text-[10px] text-slate-400 font-mono">Drafted for CEO Review</span>
+              </div>
+              <div class="bg-slate-950 border border-slate-800 rounded-2xl p-4 text-xs text-slate-200 font-mono leading-relaxed" id="draftActionText">
+Subject: Confirmation: Apex Capital Milestone 1 & Thursday Onboarding
+
+Dear Tariq,
+Thank you for the update. We are pleased to confirm Milestone 1 ($50,000) under the agreed terms. Our technical delivery leads are already scheduled to kick off the executive onboarding session this Thursday at 10:00 AM GST.
+
+Looking forward to our kickoff.
+Best regards,
+[Executive Leadership]
+              </div>
+            </div>
+          </div>
+
+          <!-- THE 1-CLICK HUMAN DECISION GATE -->
+          <div class="pt-4 border-t border-slate-800 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider">Governance Gate:</span>
+              <span class="text-[11px] font-mono text-amber-400 font-semibold" id="gateStateText">● AWAITING HUMAN APPROVAL</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" id="gateActionContainer">
+              <button onclick="executeHumanApproval()" id="approveBtn" class="py-3 px-4 bg-emerald-500 hover:bg-emerald-400 active:scale-95 text-black font-extrabold text-xs rounded-xl flex items-center justify-center gap-2 transition shadow-lg shadow-emerald-500/20">
+                <span>✓ APPROVE & DISPATCH</span>
+              </button>
+              <button onclick="calibrateTone()" id="calibrateBtn" class="py-3 px-4 bg-slate-800 hover:bg-slate-700 active:scale-95 text-white font-semibold text-xs rounded-xl flex items-center justify-center gap-2 transition border border-slate-700">
+                <span>⚡ Shorter Executive Tone</span>
+              </button>
+            </div>
+
+            <div id="executionNotice" class="hidden p-3 bg-emerald-950/80 border border-emerald-700 rounded-xl text-center">
+              <span class="text-xs font-mono text-emerald-300 font-bold block">🚀 WORKFLOW EXECUTED WITH FULL AUDIT LOG</span>
+              <span class="text-[11px] text-slate-400 font-mono">Email sent to Apex Capital · ClickUp sprint updated · Calendar locked</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Department Radar & Real-Time ROI (3 Cols) -->
+        <div class="lg:col-span-3 space-y-6">
+
+          <!-- Department Health Radar -->
+          <div class="bg-slate-900/90 border border-slate-800 rounded-3xl p-5 space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+              <span class="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider">Department Radar</span>
+              <span class="text-[10px] font-mono text-cyan-400">Live Pulse</span>
+            </div>
+
+            <div class="space-y-3">
+              <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold text-white block">Operations</span>
+                  <span class="text-[10px] text-slate-400 font-mono">Email & Triage automated</span>
+                </div>
+                <span class="px-2 py-0.5 bg-emerald-950 text-emerald-400 font-mono text-[10px] font-bold rounded">96% OPTIMAL</span>
+              </div>
+
+              <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold text-white block">Client Sales</span>
+                  <span class="text-[10px] text-slate-400 font-mono">Apex proposal pending</span>
+                </div>
+                <span class="px-2 py-0.5 bg-amber-950 text-amber-400 font-mono text-[10px] font-bold rounded" id="salesStatusBadge">ATTENTION</span>
+              </div>
+
+              <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold text-white block">Delivery Leads</span>
+                  <span class="text-[10px] text-slate-400 font-mono">3 automated handoffs</span>
+                </div>
+                <span class="px-2 py-0.5 bg-emerald-950 text-emerald-400 font-mono text-[10px] font-bold rounded">100% STABLE</span>
+              </div>
+
+              <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold text-white block">Financial Ops</span>
+                  <span class="text-[10px] text-slate-400 font-mono">Timesheet audits synced</span>
+                </div>
+                <span class="px-2 py-0.5 bg-emerald-950 text-emerald-400 font-mono text-[10px] font-bold rounded">OPTIMAL</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Value & Efficiency Realization -->
+          <div class="bg-slate-900/90 border border-slate-800 rounded-3xl p-5 space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+              <span class="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider">Weekly ROI Ticker</span>
+              <span class="text-[10px] font-mono text-emerald-400 font-bold">Week 1 Audit</span>
+            </div>
+
+            <div class="space-y-3">
+              <div>
+                <div class="flex items-center justify-between text-xs font-mono mb-1">
+                  <span class="text-slate-400">Hours Recovered</span>
+                  <span class="text-emerald-400 font-bold" id="hoursSavedTicker">8.5 hrs</span>
+                </div>
+                <div class="h-2 w-full bg-slate-950 rounded-full overflow-hidden">
+                  <div class="h-full bg-emerald-400 w-4/5 rounded-full"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex items-center justify-between text-xs font-mono mb-1">
+                  <span class="text-slate-400">Rogue AI Incidents</span>
+                  <span class="text-cyan-400 font-bold">0 (Protected)</span>
+                </div>
+                <div class="h-2 w-full bg-slate-950 rounded-full overflow-hidden">
+                  <div class="h-full bg-cyan-400 w-full rounded-full"></div>
+                </div>
+              </div>
+
+              <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 text-[11px] font-mono text-slate-300">
+                💰 Value recovered this week: <strong class="text-emerald-400 font-bold" id="valueSavedTicker">$1,450.00</strong> (based on executive hourly billing).
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Methodology & Implementation Framework (3 Sprints) -->
+    <section class="bg-slate-900 border border-slate-800 rounded-3xl p-6 md:p-8 space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-4">
+        <div>
+          <span class="text-xs font-mono font-bold text-cyan-400 uppercase tracking-wider">The Implementation Roadmap</span>
+          <h2 class="text-xl font-bold text-white mt-1">How We Execute This in Your Organization</h2>
+        </div>
+        <span class="text-xs text-slate-400 font-mono">Sprint-driven · Transparent · Measurable</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-slate-950 border border-slate-800 rounded-2xl p-5 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold text-cyan-400 bg-cyan-950 px-2.5 py-0.5 rounded-full">WEEKS 1–2</span>
+            <span class="text-xs text-slate-400 font-mono">Sprint 01</span>
+          </div>
+          <h3 class="text-base font-bold text-white">Friction Audit & Quick-Win Pilot</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            We map your highest-friction daily bottleneck (email overload, status digests, or task routing). Within 14 days, we deploy 1 safe pilot to recover your first <strong>5–10 hours/week</strong>.
+          </p>
+        </div>
+
+        <div class="bg-slate-950 border border-slate-800 rounded-2xl p-5 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold text-emerald-400 bg-emerald-950 px-2.5 py-0.5 rounded-full">WEEKS 3–6</span>
+            <span class="text-xs text-slate-400 font-mono">Sprint 02</span>
+          </div>
+          <h3 class="text-base font-bold text-white">Department Workflow Automation</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Expand proven workflows to key department leads (Sales, Operations, Client Delivery). Connect Slack, Notion, Google Workspace and CRM with deterministic Human Decision Gates.
+          </p>
+        </div>
+
+        <div class="bg-slate-950 border border-slate-800 rounded-2xl p-5 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold text-purple-400 bg-purple-950 px-2.5 py-0.5 rounded-full">WEEKS 7–12</span>
+            <span class="text-xs text-slate-400 font-mono">Sprint 03</span>
+          </div>
+          <h3 class="text-base font-bold text-white">Living SOPs & Team Autonomy</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            We document all workflows into living Playbooks and train your internal leads. <strong>Zero vendor lock-in</strong>: your team retains full ownership and mastery over the systems.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Engineering Depth & Secondary Layer -->
+    <details class="bg-slate-900/60 border border-slate-800 rounded-2xl p-5 group">
+      <summary class="text-xs font-mono text-slate-400 cursor-pointer hover:text-white flex items-center justify-between">
+        <span>⚙️ Technical Architecture & Enterprise Governance (Inspect Secondary Layer)</span>
+        <span class="group-open:rotate-180 transition transform">▼</span>
+      </summary>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 text-xs font-mono text-slate-300">
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2">
+          <strong class="text-cyan-400 block">Enterprise Security & Compliance:</strong>
+          <p class="text-slate-400 text-[11px] leading-relaxed">
+            • Zero training on confidential client data (Enterprise API tier compliance).<br>
+            • PII Sanitization layer active before any model inference.<br>
+            • Immutable audit trail logged for every human gate interaction.
+          </p>
+        </div>
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2">
+          <strong class="text-emerald-400 block">Integration Stack:</strong>
+          <p class="text-slate-400 text-[11px] leading-relaxed">
+            • Python / TypeScript execution layer.<br>
+            • n8n / Make workflow orchestration & webhooks.<br>
+            • Slack, Microsoft Teams, Notion, Supabase, Google Workspace integration.
+          </p>
         </div>
       </div>
     </details>
 
-    <section class="command" id="summary"></section>
-
-    <section class="toolbar">
-      <div>
-        <h2>Decision queue</h2>
-        <p>All companies, jobs and evidence below are fictional.</p>
-      </div>
-      <select id="filter" aria-label="Filter opportunities">
-        <option value="all">All states</option>
-        <option value="READY_FOR_REVIEW">Ready for review</option>
-        <option value="NEEDS_INFORMATION">Needs information</option>
-        <option value="HOLD">Hold</option>
-      </select>
-    </section>
-
-    <section id="cards" class="cards" aria-live="polite"></section>
-
-    <section class="principles">
-      <article>
-        <h3>Evidence before claims</h3>
-        <p>A requirement is only marked supported when the demo evidence explicitly supports it. Keyword overlap alone is not proof.</p>
-      </article>
-      <article>
-        <h3>Unknown stays unknown</h3>
-        <p>Missing compensation, workload or geography is displayed as missing instead of being inferred.</p>
-      </article>
-      <article>
-        <h3>Human control</h3>
-        <p>No button sends a proposal, message or application. The system prepares a decision; a person decides.</p>
-      </article>
-    </section>
-
-    <footer>
-      <p>Public showcase by Flávio Souza Barros · Engineering × AI × Automation × Project Systems</p>
-      <p><a href="docs/ARCHITECTURE.md">Architecture</a> · <a href="docs/PUBLICATION_BOUNDARY.md">Publication boundary</a> · <a href="SECURITY.md">Security</a></p>
-    </footer>
   </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800 bg-slate-950 py-8 px-4 text-center text-xs text-slate-500 font-mono space-y-2">
+    <p>
+      Executive AI Command Center · Public Showcase by <strong>Flávio Souza Barros</strong>
+    </p>
+    <p class="text-[11px]">
+      Engineering × Workflow Automation × AI Operations · Dubai (UAE) & Worldwide Remote
+    </p>
+  </footer>
+
   <script src="app.js"></script>
 </body>
 </html>
