@@ -24,20 +24,24 @@ videoFiles.forEach(vFile => {
   console.log(`✔ Gate 1: Real MP4 video asset ${vFile} verified (${(s.size / 1024).toFixed(1)} KB)`);
 });
 
-const audioFiles = ['voice_memo_en.mp3', 'voice_memo_ar.mp3', 'voice_memo_pt.mp3'];
-audioFiles.forEach(file => {
-  const p = path.join(assetsDir, 'audio', file);
-  assert.ok(fs.existsSync(p), `Audio file ${file} must exist`);
-  const s = fs.statSync(p);
-  assert.ok(s.size > 50000, `Audio file ${file} must be > 50KB. Actual: ${s.size}`);
-  console.log(`✔ Gate 2: Audio asset ${file} verified (${(s.size / 1024).toFixed(1)} KB)`);
+const scenarios = ['audio_memo', 'proposal_request', 'board_digest'];
+const languages = ['en', 'ar', 'pt'];
+scenarios.forEach(sc => {
+  languages.forEach(lang => {
+    const file = `scenario_${sc}_${lang}.mp3`;
+    const p = path.join(assetsDir, 'audio', file);
+    assert.ok(fs.existsSync(p), `Dedicated scenario audio file ${file} must exist`);
+    const s = fs.statSync(p);
+    assert.ok(s.size > 50000, `Audio file ${file} must be > 50KB. Actual: ${s.size}`);
+    console.log(`✔ Gate 2: Dedicated scenario audio ${file} verified (${(s.size / 1024).toFixed(1)} KB)`);
+  });
 });
 
 // 3. Verify app.js real audio integration
 const appPath = path.resolve(__dirname, '../app.js');
 const appContent = fs.readFileSync(appPath, 'utf8');
-assert.ok(appContent.includes('assets/audio/voice_memo_${currentLang}.mp3'), 'Gate 2: app.js must use real audio files per currentLang');
+assert.ok(appContent.includes('scenario_${currentScenario}_${currentLang}.mp3'), 'Gate 2: app.js must use dedicated scenario audio per tab and language');
 assert.ok(appContent.includes('new Audio(audioSrc)'), 'Gate 2: app.js must instantiate HTML5 Audio');
-console.log("✔ Gate 2: JavaScript audio engine verified");
+console.log("✔ Gate 2: JavaScript audio engine verified with dynamic tab switching");
 
-console.log("\nALL 5 QUALITY GATES PASSED DETERMINISTICALLY!");
+console.log("\nALL QUALITY GATES PASSED DETERMINISTICALLY!");

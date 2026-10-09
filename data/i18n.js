@@ -409,12 +409,21 @@ function validateDictionaries() {
   return true;
 }
 
+function getScenarioAudioPath(scenarioId, lang = "en") {
+  const validScenarios = ["audio_memo", "proposal_request", "board_digest"];
+  const validLangs = ["en", "ar", "pt"];
+  const s = validScenarios.includes(scenarioId) ? scenarioId : "audio_memo";
+  const l = validLangs.includes(lang) ? lang : "en";
+  return `assets/audio/scenario_${s}_${l}.mp3`;
+}
+
 // Module export for Node.js / TDD and browser exposure
 if (typeof module !== "undefined" && module.exports) {
   module.exports = {
     UI_TRANSLATIONS,
     SCENARIOS,
     getScenario,
+    getScenarioAudioPath,
     calculateSavings,
     validateDictionaries
   };
@@ -423,6 +432,7 @@ if (typeof module !== "undefined" && module.exports) {
     UI_TRANSLATIONS,
     SCENARIOS,
     getScenario,
+    getScenarioAudioPath,
     calculateSavings,
     validateDictionaries
   };

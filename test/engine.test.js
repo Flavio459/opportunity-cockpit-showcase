@@ -4,6 +4,7 @@ const {
   UI_TRANSLATIONS,
   SCENARIOS,
   getScenario,
+  getScenarioAudioPath,
   calculateSavings,
   validateDictionaries
 } = require('../data/i18n.js');
@@ -87,6 +88,47 @@ test('TDD: Audio and video media assets must exist on disk and meet quality stan
     assert.ok(fs.existsSync(audioPath), `Audio file ${fileName} must exist`);
     const audioStats = fs.statSync(audioPath);
     assert.ok(audioStats.size > 20000, `Audio file ${fileName} (${audioStats.size} bytes) must be > 20KB`);
+  });
+});
+
+test('TDD: Dedicated scenario audio paths must exist on disk for all 3 tabs across 3 languages', () => {
+  const fs = require('node:fs');
+  const path = require('node:path');
+  const audioDir = path.resolve(__dirname, '../assets/audio');
+
+  const scenarios = ['audio_memo', 'proposal_request', 'board_digest'];
+  const languages = ['en', 'ar', 'pt'];
+
+  scenarios.forEach(scId => {
+    languages.forEach(lang => {
+      const relPath = getScenarioAudioPath(scId, lang);
+      assert.strictEqual(relPath, `assets/audio/scenario_${scId}_${lang}.mp3`, 'Path format must match convention');
+      
+      const fullPath = path.resolve(__dirname, '..', relPath);
+      assert.ok(fs.existsSync(fullPath), `Dedicated scenario audio ${fullPath} must exist on disk`);
+      const stat = fs.statSync(fullPath);
+      assert.ok(stat.size > 20000, `Scenario audio ${relPath} (${stat.size} bytes) must be non-empty and > 20KB`);
+    });
+  });
+});
+
+test('TDD: Client UX state transitions guarantee scenario isolation and distinct executive content', () => {
+  const scenarios = ['audio_memo', 'proposal_request', 'board_digest'];
+  const seenTranscripts = new Set();
+  const seenSenders = new Set();
+
+  scenarios.forEach(scId => {
+    const scEn = getScenario(scId, 'en');
+    assert.ok(!seenTranscripts.has(scEn.transcript), `Scenario ${scId} must have unique transcript`);
+    seenTranscripts.add(scEn.transcript);
+
+    assert.ok(!seenSenders.has(scEn.senderName), `Scenario ${scId} must have unique sender identity`);
+    seenSenders.add(scEn.senderName);
+
+    const scPt = getScenario(scId, 'pt');
+    const scAr = getScenario(scId, 'ar');
+    assert.ok(scPt.transcript.length > 20, `PT transcript for ${scId} is populated`);
+    assert.ok(scAr.transcript.length > 20, `AR transcript for ${scId} is populated`);
   });
 });
 

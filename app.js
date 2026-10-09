@@ -124,6 +124,21 @@ function loadScenario(scenarioId) {
   isShortTone = false;
   isApproved = false;
 
+  // Stop any active audio and reset player UI when switching scenario tabs
+  if (simAudioInstance) {
+    simAudioInstance.pause();
+    simAudioInstance.currentTime = 0;
+    simAudioInstance = null;
+    stopWaveAnimation();
+    const btnIcon = document.getElementById("simAudioIcon");
+    const btnLabel = document.getElementById("simAudioLabel");
+    if (btnIcon && btnLabel) {
+      btnIcon.innerText = "▶";
+      const dict = (i18n.UI_TRANSLATIONS && i18n.UI_TRANSLATIONS[currentLang]) || {};
+      btnLabel.innerText = dict.playVoiceBtn || "Play Voice";
+    }
+  }
+
   // Update Scenario Tabs
   ["audio_memo", "proposal_request", "board_digest"].forEach((id, idx) => {
     const btn = document.getElementById(`btn-scenario-${idx + 1}`);
@@ -194,8 +209,9 @@ function playSimulationAudio() {
     return;
   }
 
-  // Create real audio instance for current language (en, ar, pt)
-  const audioSrc = `assets/audio/voice_memo_${currentLang}.mp3`;
+  // Create real audio instance for current scenario and language (en, ar, pt)
+  const audioSrc = (i18n.getScenarioAudioPath && i18n.getScenarioAudioPath(currentScenario, currentLang))
+    || `assets/audio/scenario_${currentScenario}_${currentLang}.mp3`;
   simAudioInstance = new Audio(audioSrc);
 
   startWaveAnimation();
