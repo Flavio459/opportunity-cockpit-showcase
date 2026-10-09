@@ -331,15 +331,15 @@ function updateWalkthroughVideo(lang) {
   if (!video) return;
 
   const isPlaying = !video.paused && !video.ended;
-  let targetSrc = "assets/walkthrough_executive.mp4";
-  let durationText = "00:25 · 1080p MP4";
+  let targetSrc = "assets/walkthrough_executive.mp4?v=20261009_v3";
+  let durationText = "00:57 · 1080p MP4";
 
   if (lang === "ar") {
-    targetSrc = "assets/walkthrough_executive_ar.mp4";
-    durationText = "00:36 · 1080p MP4";
+    targetSrc = "assets/walkthrough_executive_ar.mp4?v=20261009_v3";
+    durationText = "01:00 · 1080p MP4";
   } else if (lang === "pt") {
-    targetSrc = "assets/walkthrough_executive_pt.mp4";
-    durationText = "00:34 · 1080p MP4";
+    targetSrc = "assets/walkthrough_executive_pt.mp4?v=20261009_v3";
+    durationText = "00:54 · 1080p MP4";
   }
 
   if (durationBadge) {

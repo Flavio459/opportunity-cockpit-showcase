@@ -9,7 +9,7 @@ const htmlPath = path.resolve(__dirname, '../index.html');
 const htmlContent = fs.readFileSync(htmlPath, 'utf8');
 
 assert.ok(htmlContent.includes('<video id="walkthroughVideo"'), 'Gate 1: index.html must contain walkthroughVideo element');
-assert.ok(htmlContent.includes('src="assets/walkthrough_executive.mp4"'), 'Gate 1: index.html must point to real MP4 video asset');
+assert.ok(/src="assets\/walkthrough_executive\.mp4(\?[^"]*)?"/.test(htmlContent), 'Gate 1: index.html must point to real MP4 video asset');
 assert.ok(!htmlContent.includes('▶ ▶'), 'Gate 3: index.html must not contain duplicate play symbols');
 console.log("✔ Gate 1 & 3: HTML structure & video element verified");
 
