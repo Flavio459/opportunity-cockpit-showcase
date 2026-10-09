@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    background: #060911;
+    color: #F8FAFC;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    background-image: 
+      linear-gradient(rgba(30, 41, 59, 0.22) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(30, 41, 59, 0.22) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .hud-pill {
+    position: absolute;
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(13, 20, 36, 0.96);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 24px rgba(56, 189, 248, 0.2);
+    border-radius: 9999px;
+    padding: 10px 32px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    z-index: 50;
+  }
+  .hud-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 800;
+    padding: 4px 12px;
+    border-radius: 6px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .hud-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: #FFFFFF;
+  }
+  .glass-card {
+    background: rgba(13, 20, 36, 0.92);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(51, 65, 85, 0.8);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  }
+</style>
+</head>
+
+<body>
+  <!-- Ambient Glow -->
+  <div style="position:absolute;top:20%;left:10%;width:600px;height:600px;background:radial-gradient(circle, rgba(22,163,74,0.18) 0%, transparent 70%);pointer-events:none;"></div>
+  <div style="position:absolute;bottom:15%;right:10%;width:600px;height:600px;background:radial-gradient(circle, rgba(2,132,199,0.18) 0%, transparent 70%);pointer-events:none;"></div>
+
+  <div class="hud-pill">
+    <span class="hud-tag" style="background:#0284C7;color:#FFFFFF;">STEP 02: SYNTHESIS</span>
+    <span class="hud-title">AI STRATEGIC SYNTHESIS · 3-BULLET DIGEST · PRE-DRAFTED ACTIONS</span>
+  </div>
+
+  <div style="position:absolute;inset:104px 60px 48px 60px;display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:stretch;">
+    
+    <!-- Left Column: 3 Strategic Decision Bullets -->
+    <div style="display:flex;flex-direction:column;gap:18px;justify-content:space-between;">
+      
+      <div>
+        <div style="font-family:'Plus Jakarta Sans';font-size:26px;font-weight:800;color:#FFFFFF;margin-bottom:6px;">Executive Decision Digest</div>
+        <div style="font-size:15px;color:#94A3B8;margin-bottom:20px;">Instant board-level triage: 3 high-impact bullets generated in &lt;1.5 seconds.</div>
+
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div class="glass-card" style="border-radius:18px;padding:24px 28px;display:flex;gap:20px;align-items:flex-start;border:1px solid rgba(22,163,74,0.35);">
+            <div style="font-family:'JetBrains Mono';font-size:22px;font-weight:900;color:#4ADE80;background:rgba(22,163,74,0.18);border:1px solid #16A34A;width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;shrink:0;">01</div>
+            <div>
+              <div style="font-size:18px;font-weight:800;color:#FFFFFF;margin-bottom:4px;">Revenue Milestone Approved</div>
+              <div style="font-size:14.5px;color:#94A3B8;line-height:1.5;">Confirms $50,000 for Milestone 1 under approved commercial terms. Risk of scope creep mitigated.</div>
+            </div>
+          </div>
+
+          <div class="glass-card" style="border-radius:18px;padding:24px 28px;display:flex;gap:20px;align-items:flex-start;border:1px solid rgba(56,189,248,0.35);">
+            <div style="font-family:'JetBrains Mono';font-size:22px;font-weight:900;color:#38BDF8;background:rgba(2,132,199,0.18);border:1px solid #0284C7;width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;shrink:0;">02</div>
+            <div>
+              <div style="font-size:18px;font-weight:800;color:#FFFFFF;margin-bottom:4px;">Calendar & Delivery Alignment</div>
+              <div style="font-size:14.5px;color:#94A3B8;line-height:1.5;">Onboarding shifted to Thursday 10:00 AM GST. Engineering leads reserved without meeting overload.</div>
+            </div>
+          </div>
+
+          <div class="glass-card" style="border-radius:18px;padding:24px 28px;display:flex;gap:20px;align-items:flex-start;border:1px solid rgba(245,158,11,0.35);">
+            <div style="font-family:'JetBrains Mono';font-size:22px;font-weight:900;color:#FBBF24;background:rgba(217,119,6,0.18);border:1px solid #D97706;width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;shrink:0;">03</div>
+            <div>
+              <div style="font-size:18px;font-weight:800;color:#FFFFFF;margin-bottom:4px;">Time-Sensitive Authorization</div>
+              <div style="font-size:14.5px;color:#94A3B8;line-height:1.5;">Requires 1-click leadership sign-off prior to Apex 2:00 PM GST committee meeting.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="font-family:'JetBrains Mono';font-size:12.5px;color:#64748B;">Audit Status: Extracted with 100% deterministic accuracy · Zero hallucination check passed</div>
+
+    </div>
+
+    <!-- Right Column: Pre-Drafted Client Deliverable -->
+    <div class="glass-card" style="border-radius:22px;padding:34px 38px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid rgba(56,189,248,0.35);">
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1E293B;padding-bottom:16px;margin-bottom:18px;">
+          <div>
+            <div style="font-family:'JetBrains Mono';font-size:13px;font-weight:800;color:#38BDF8;text-transform:uppercase;">Pre-Drafted Deliverable (Waiting for Gate)</div>
+            <div style="font-size:13px;color:#94A3B8;margin-top:2px;">Tailored to C-Suite Tone & Voice Guidelines</div>
+          </div>
+          <span style="font-family:'JetBrains Mono';font-size:11px;background:#1E293B;color:#4ADE80;padding:5px 10px;border-radius:6px;font-weight:700;">READY TO DISPATCH</span>
+        </div>
+
+        <div style="background:#080C16;border:1px solid #1E293B;border-radius:14px;padding:24px;font-family:'JetBrains Mono';font-size:14px;line-height:1.65;color:#E2E8F0;">
+          <div style="color:#64748B;margin-bottom:12px;border-bottom:1px solid #1E293B;padding-bottom:8px;">
+            To: Tariq Al-Mansoor &lt;tariq@apexcapital.ae&gt;<br>
+            Subject: Confirmation: Apex Capital Milestone 1 & Thursday Onboarding
+          </div>
+          Dear Tariq,<br><br>
+          Thank you for the update. We are pleased to confirm Milestone 1 ($50,000) under the agreed terms. Our technical delivery leads are already scheduled to kick off the executive onboarding session this Thursday at 10:00 AM GST.<br><br>
+          Looking forward to our kickoff.<br>
+          Best regards,<br>
+          <strong style="color:#38BDF8;">[Executive Leadership]</strong>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:14px;margin-top:18px;">
+        <div style="flex:1;background:rgba(56,189,248,0.12);border:1px solid #0284C7;border-radius:10px;padding:12px;text-align:center;font-size:13px;font-weight:700;color:#38BDF8;">
+          ⚡ Alternative 2-Sentence CEO Tone Available in 1-Click
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

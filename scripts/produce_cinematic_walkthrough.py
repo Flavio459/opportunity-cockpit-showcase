@@ -151,8 +151,9 @@ def render_cinematic_video(audio_filename, out_video_filename):
     print(f"[OK] Successfully rendered {out_video_filename}: {vsize/1024:.1f} KB")
 
 if __name__ == "__main__":
-    generate_scene_slides()
+    from render_rich_scenes import generate_html_scenes
+    generate_html_scenes()
     render_cinematic_video("narration_walkthrough_en.mp3", "walkthrough_executive.mp4")
     render_cinematic_video("narration_walkthrough_pt.mp3", "walkthrough_executive_pt.mp4")
     render_cinematic_video("narration_walkthrough_ar.mp3", "walkthrough_executive_ar.mp4")
-    print("\nAll 3 cinematic walkthrough videos completed successfully!")
+    print("\nAll 3 cinematic walkthrough videos completed successfully with rich 1080p scenes!")

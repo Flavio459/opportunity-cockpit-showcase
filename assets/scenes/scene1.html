@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    background: #060911;
+    color: #F8FAFC;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    background-image: 
+      linear-gradient(rgba(30, 41, 59, 0.22) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(30, 41, 59, 0.22) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .hud-pill {
+    position: absolute;
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(13, 20, 36, 0.96);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 24px rgba(56, 189, 248, 0.2);
+    border-radius: 9999px;
+    padding: 10px 32px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    z-index: 50;
+  }
+  .hud-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 800;
+    padding: 4px 12px;
+    border-radius: 6px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .hud-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: #FFFFFF;
+  }
+  .glass-card {
+    background: rgba(13, 20, 36, 0.92);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(51, 65, 85, 0.8);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  }
+</style>
+</head>
+
+<body>
+  <div style="position:absolute;inset:0;background:url('file:///W:/workspaces antigravity/opportunity-cockpit-showcase/assets/hero_executive_dubai.jpg') center/cover no-repeat;filter:brightness(0.72);"></div>
+  <div style="position:absolute;inset:0;background:radial-gradient(circle at center, rgba(6,9,17,0.35) 0%, rgba(6,9,17,0.85) 100%);"></div>
+
+  <div class="hud-pill">
+    <span class="hud-tag" style="background:#0284C7;color:#FFFFFF;">EXECUTIVE BRIEFING</span>
+    <span class="hud-title">EXECUTIVE AI COMMAND CENTER · DUBAI C-SUITE OPERATIONS</span>
+  </div>
+
+  <div style="position:absolute;bottom:64px;left:70px;right:70px;display:flex;justify-content:space-between;align-items:flex-end;">
+    <div class="glass-card" style="max-width:920px;border-radius:24px;padding:38px 46px;border:1px solid rgba(56,189,248,0.3);">
+      <div style="display:flex;gap:12px;margin-bottom:14px;">
+        <span style="font-family:'JetBrains Mono';font-size:12px;font-weight:800;background:rgba(2,132,199,0.25);color:#38BDF8;padding:4px 12px;border-radius:6px;border:1px solid #0284C7;">DUBAI, UAE (GST UTC+4)</span>
+        <span style="font-family:'JetBrains Mono';font-size:12px;font-weight:800;background:rgba(22,163,74,0.25);color:#4ADE80;padding:4px 12px;border-radius:6px;border:1px solid #16A34A;">ZERO ROGUE AI ACTIVE</span>
+        <span style="font-family:'JetBrains Mono';font-size:12px;font-weight:800;background:rgba(217,119,6,0.25);color:#FBBF24;padding:4px 12px;border-radius:6px;border:1px solid #D97706;">EXPERT TIER $39/HR</span>
+      </div>
+      <h1 style="font-family:'Plus Jakarta Sans';font-size:44px;font-weight:800;line-height:1.15;color:#FFFFFF;margin-bottom:14px;">Turning Raw AI Models into Trusted Leadership Habits</h1>
+      <p style="font-size:18px;color:#94A3B8;line-height:1.55;">A disciplined operational framework for CEOs and Department Leads in Dubai. Ingest unstructured voice communications, synthesize decision digests, and enforce 1-click deterministic governance.</p>
+    </div>
+
+    <div style="display:flex;gap:20px;">
+      <div class="glass-card" style="border-radius:20px;padding:28px 36px;text-align:center;min-width:230px;border:1px solid rgba(22,163,74,0.45);">
+        <div style="font-family:'JetBrains Mono';font-size:44px;font-weight:800;color:#4ADE80;line-height:1;">5–10h</div>
+        <div style="font-size:13px;font-weight:700;color:#94A3B8;text-transform:uppercase;margin-top:8px;letter-spacing:0.5px;">Weekly Recovered</div>
+        <div style="font-family:'JetBrains Mono';font-size:11px;color:#16A34A;margin-top:4px;font-weight:800;">SPRINT 01 PILOT</div>
+      </div>
+      <div class="glass-card" style="border-radius:20px;padding:28px 36px;text-align:center;min-width:230px;border:1px solid rgba(56,189,248,0.45);">
+        <div style="font-family:'JetBrains Mono';font-size:44px;font-weight:800;color:#38BDF8;line-height:1;">100%</div>
+        <div style="font-size:13px;font-weight:700;color:#94A3B8;text-transform:uppercase;margin-top:8px;letter-spacing:0.5px;">Deterministic</div>
+        <div style="font-family:'JetBrains Mono';font-size:11px;color:#0284C7;margin-top:4px;font-weight:800;">HUMAN GATE IN 1-CLICK</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
