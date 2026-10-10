@@ -185,7 +185,11 @@ function loadScenario(scenarioId) {
     calibrateBtnLabel.innerText = dict.btnCalibrateShort || "⚡ Shorter Tone";
   }
 
-  document.getElementById("executionNotice").classList.add("hidden");
+  const execNotice = document.getElementById("executionNotice");
+  if (execNotice) {
+    execNotice.classList.add("hidden");
+    execNotice.classList.remove("stamp-pulse");
+  }
 }
 
 // Real Voice Audio Playback via pre-rendered executive MP3s + Waveform Animation
@@ -305,10 +309,24 @@ function executeHumanApproval() {
   gateState.className = "text-[11px] font-mono text-emerald-400 font-bold";
   gateState.innerText = dict.gateApprovedText || "✓ AUTHORIZED BY HUMAN GATE (Flávio Barros)";
 
-  // Notice
+  // Notice & Tactile Sovereign Stamp
   const notice = document.getElementById("executionNotice");
-  document.getElementById("executionSubnotice").innerText = data.executedNotice || "Workflow dispatched successfully.";
+  const subnotice = document.getElementById("executionSubnotice");
+  if (subnotice) {
+    subnotice.innerText = data.executedNotice || "Workflow dispatched successfully.";
+  }
+
+  // Format live Dubai GST / UTC timestamp
+  const now = new Date();
+  const timePad = (n) => String(n).padStart(2, '0');
+  const dateStr = `${now.getFullYear()}-${timePad(now.getMonth() + 1)}-${timePad(now.getDate())} ${timePad(now.getHours())}:${timePad(now.getMinutes())}:${timePad(now.getSeconds())} GST`;
+  const stampTime = document.getElementById("stampTimestamp");
+  if (stampTime) {
+    stampTime.innerText = dateStr;
+  }
+
   notice.classList.remove("hidden");
+  notice.classList.add("stamp-pulse");
 
   // Update Tickers with $39/hr formula
   const savings = i18n.calculateSavings ? i18n.calculateSavings(8.5, 0.7, 39.0) : { totalHours: 9.2, totalValue: 358.80 };

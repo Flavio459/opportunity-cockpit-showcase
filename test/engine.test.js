@@ -131,4 +131,26 @@ test('TDD: Client UX state transitions guarantee scenario isolation and distinct
     assert.ok(scAr.transcript.length > 20, `AR transcript for ${scId} is populated`);
   });
 });
+test('TDD: Conversion psychology, governance matrix, and audit keys exist across all languages', () => {
+  const requiredConversionKeys = [
+    'auditSignedTitle',
+    'auditSignerLabel',
+    'contrastHeading',
+    'contrastRogueTitle',
+    'contrastSovereignTitle',
+    'ctaSectionEyebrow',
+    'ctaSectionHeading',
+    'btnUpworkContract',
+    'btnScheduleCall',
+    'ctaEscrowNotice'
+  ];
+  const languages = ['en', 'ar', 'pt'];
 
+  languages.forEach((lang) => {
+    const dict = UI_TRANSLATIONS[lang];
+    requiredConversionKeys.forEach((key) => {
+      assert.ok(dict[key], `Language ${lang} must include conversion key ${key}`);
+      assert.ok(dict[key].length > 3, `Value for ${key} in ${lang} must be non-trivial`);
+    });
+  });
+});
