@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&family=Space+Grotesk:wght@600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap');
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     width: 1920px;
     height: 1080px;
     overflow: hidden;
-    background: #060911;
+    background: #040711;
     color: #F8FAFC;
     font-family: 'Inter', sans-serif;
     position: relative;
@@ -17,150 +17,270 @@
     background-image: 
       linear-gradient(rgba(30, 41, 59, 0.22) 1px, transparent 1px),
       linear-gradient(90deg, rgba(30, 41, 59, 0.22) 1px, transparent 1px);
-    background-size: 48px 48px;
+    background-size: 40px 40px;
   }
   .hud-pill {
     position: absolute;
-    top: 32px;
+    top: 24px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(13, 20, 36, 0.96);
-    border: 1px solid rgba(56, 189, 248, 0.35);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 24px rgba(56, 189, 248, 0.2);
+    background: rgba(10, 16, 30, 0.96);
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    box-shadow: 0 12px 36px rgba(0,0,0,0.7), 0 0 24px rgba(56, 189, 248, 0.25);
     border-radius: 9999px;
     padding: 10px 32px;
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 16px;
     z-index: 50;
   }
   .hud-tag {
     font-family: 'JetBrains Mono', monospace;
     font-size: 13px;
     font-weight: 800;
-    padding: 4px 12px;
+    padding: 4px 14px;
     border-radius: 6px;
     letter-spacing: 1px;
     text-transform: uppercase;
   }
   .hud-title {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 17px;
-    font-weight: 800;
-    letter-spacing: 0.5px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16.5px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
     color: #FFFFFF;
   }
   .glass-card {
-    background: rgba(13, 20, 36, 0.92);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(51, 65, 85, 0.8);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    background: rgba(10, 16, 30, 0.92);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(51, 65, 85, 0.7);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+  .glow-cyan {
+    box-shadow: 0 0 40px rgba(56, 189, 248, 0.25);
+  }
+  .glow-emerald {
+    box-shadow: 0 0 40px rgba(34, 197, 94, 0.25);
+  }
+  .glow-amber {
+    box-shadow: 0 0 40px rgba(245, 158, 11, 0.25);
   }
 </style>
 </head>
 
 <body>
-  <!-- Ambient Glow -->
-  <div style="position:absolute;top:10%;left:15%;width:600px;height:600px;background:radial-gradient(circle, rgba(2,132,199,0.18) 0%, transparent 70%);pointer-events:none;"></div>
-  <div style="position:absolute;bottom:10%;right:15%;width:600px;height:600px;background:radial-gradient(circle, rgba(22,163,74,0.15) 0%, transparent 70%);pointer-events:none;"></div>
+  <div style="position:absolute;top:8%;left:15%;width:650px;height:650px;background:radial-gradient(circle, rgba(2,132,199,0.18) 0%, transparent 70%);pointer-events:none;"></div>
+  <div style="position:absolute;bottom:8%;right:15%;width:650px;height:650px;background:radial-gradient(circle, rgba(22,163,74,0.16) 0%, transparent 70%);pointer-events:none;"></div>
 
   <div class="hud-pill">
     <span class="hud-tag" style="background:#16A34A;color:#FFFFFF;">STEP 01: INTAKE</span>
     <span class="hud-title">REAL-TIME VOICE INGESTION · SANITIZED IN 1.2s · ZERO LEAKAGE</span>
   </div>
 
-  <div style="position:absolute;inset:104px 60px 48px 60px;display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:stretch;">
+  <div style="position:absolute;top:92px;bottom:32px;left:60px;right:60px;display:grid;grid-template-columns:1.05fr 0.95fr;gap:24px;">
     
-    <!-- Left Column: Audio Intake Stream -->
-    <div class="glass-card" style="border-radius:22px;padding:32px 36px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid rgba(56,189,248,0.35);">
+    <!-- Left Column: Audio Intake Stream, Spectrogram & Tokenization -->
+    <div class="glass-card" style="border-radius:24px;padding:26px 30px;display:flex;flex-direction:column;gap:14px;border:1px solid rgba(56,189,248,0.35);">
       
-      <div>
-        <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1E293B;padding-bottom:16px;margin-bottom:20px;">
-          <div style="display:flex;align-items:center;gap:16px;">
-            <div style="width:54px;height:54px;border-radius:14px;background:#0369A1;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 0 20px rgba(3,105,161,0.5);">🎙️</div>
-            <div>
-              <div style="font-size:20px;font-weight:800;color:#FFFFFF;">VP of Operations (Dubai)</div>
-              <div style="font-family:'JetBrains Mono';font-size:13px;color:#38BDF8;">WhatsApp & Slack Corporate Intake Gateway</div>
-            </div>
-          </div>
-          <span style="font-family:'JetBrains Mono';font-size:13px;font-weight:800;background:rgba(22,163,74,0.2);color:#4ADE80;border:1px solid #16A34A;padding:6px 14px;border-radius:8px;">0:32 HD AUDIO MEMO</span>
-        </div>
-
-        <!-- High-End Soundwave Visualizer -->
-        <div style="background:#080C16;border:1px solid #1E293B;border-radius:16px;padding:22px 26px;margin-bottom:22px;">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-            <span style="font-family:'JetBrains Mono';font-size:12px;color:#94A3B8;text-transform:uppercase;">Stereo Frequency Waveform</span>
-            <span style="font-family:'JetBrains Mono';font-size:12px;color:#4ADE80;font-weight:700;">● Active Stream · 24kHz Opus</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:6px;height:64px;">
-            <div style="width:7px;height:24px;background:#38BDF8;border-radius:4px;"></div>
-            <div style="width:7px;height:48px;background:#0284C7;border-radius:4px;"></div>
-            <div style="width:7px;height:32px;background:#38BDF8;border-radius:4px;"></div>
-            <div style="width:7px;height:58px;background:#4ADE80;border-radius:4px;"></div>
-            <div style="width:7px;height:36px;background:#0284C7;border-radius:4px;"></div>
-            <div style="width:7px;height:52px;background:#38BDF8;border-radius:4px;"></div>
-            <div style="width:7px;height:44px;background:#4ADE80;border-radius:4px;"></div>
-            <div style="width:7px;height:64px;background:#0284C7;border-radius:4px;"></div>
-            <div style="width:7px;height:48px;background:#38BDF8;border-radius:4px;"></div>
-            <div style="width:7px;height:30px;background:#0284C7;border-radius:4px;"></div>
-            <div style="width:7px;height:56px;background:#4ADE80;border-radius:4px;"></div>
-            <div style="width:7px;height:36px;background:#38BDF8;border-radius:4px;"></div>
-            <div style="width:7px;height:62px;background:#0284C7;border-radius:4px;"></div>
-            <div style="width:7px;height:42px;background:#4ADE80;border-radius:4px;"></div>
-            <div style="width:7px;height:28px;background:#38BDF8;border-radius:4px;"></div>
-            <div style="width:7px;height:50px;background:#0284C7;border-radius:4px;"></div>
-            <div style="width:7px;height:34px;background:#4ADE80;border-radius:4px;"></div>
-            <div style="width:7px;height:20px;background:#38BDF8;border-radius:4px;"></div>
+      <!-- Audio Memo Header -->
+      <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1E293B;padding-bottom:12px;">
+        <div style="display:flex;align-items:center;gap:14px;">
+          <div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg, #0284C7, #0369A1);display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 0 20px rgba(3,105,161,0.6);">🎙️</div>
+          <div>
+            <div style="font-size:19px;font-weight:800;color:#FFFFFF;">VP of Operations (Dubai DIFC)</div>
+            <div style="font-family:'JetBrains Mono';font-size:12px;color:#38BDF8;">WhatsApp & Slack Corporate Intake Gateway</div>
           </div>
         </div>
+        <span style="font-family:'JetBrains Mono';font-size:11.5px;font-weight:800;background:rgba(22,163,74,0.25);color:#4ADE80;border:1px solid #16A34A;padding:5px 12px;border-radius:8px;">0:32 HD OPUS MEMO</span>
+      </div>
 
-        <!-- Transcript with glowing tags -->
-        <div style="background:#080C16;border:1px solid #1E293B;border-radius:16px;padding:22px;font-family:'JetBrains Mono';font-size:15.5px;line-height:1.65;color:#CBD5E1;">
-          “Flávio, we just received <span style="color:#38BDF8;font-weight:800;border-bottom:2px solid #0284C7;">Apex Capital's</span> revision. They want to proceed with <span style="color:#4ADE80;font-weight:800;border-bottom:2px solid #16A34A;">Milestone 1 ($50k)</span>, but need delivery onboarding moved to <span style="color:#FBBF24;font-weight:800;border-bottom:2px solid #D97706;">Thursday morning</span>. Can we confirm this before their committee meets at 2 PM?”
+      <!-- High-End Soundwave Visualizer -->
+      <div style="background:#070B14;border:1px solid #1E293B;border-radius:14px;padding:14px 20px;box-shadow:inset 0 2px 10px rgba(0,0,0,0.6);">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+          <span style="font-family:'JetBrains Mono';font-size:11px;color:#94A3B8;text-transform:uppercase;">Stereo Frequency Waveform</span>
+          <span style="font-family:'JetBrains Mono';font-size:11px;color:#4ADE80;font-weight:700;">● Active Stream · 24kHz Opus · Dynamic Range -16 LUFS</span>
+        </div>
+        
+        <div style="display:flex;align-items:center;justify-content:space-between;height:52px;padding:0 6px;">
+          <div style="width:6px;height:22px;background:#38BDF8;border-radius:3px;"></div>
+          <div style="width:6px;height:42px;background:#0284C7;border-radius:3px;"></div>
+          <div style="width:6px;height:28px;background:#38BDF8;border-radius:3px;"></div>
+          <div style="width:6px;height:50px;background:#4ADE80;border-radius:3px;"></div>
+          <div style="width:6px;height:36px;background:#0284C7;border-radius:3px;"></div>
+          <div style="width:6px;height:46px;background:#38BDF8;border-radius:3px;"></div>
+          <div style="width:6px;height:40px;background:#4ADE80;border-radius:3px;"></div>
+          <div style="width:6px;height:52px;background:#0284C7;border-radius:3px;"></div>
+          <div style="width:6px;height:44px;background:#38BDF8;border-radius:3px;"></div>
+          <div style="width:6px;height:30px;background:#0284C7;border-radius:3px;"></div>
+          <div style="width:6px;height:48px;background:#4ADE80;border-radius:3px;"></div>
+          <div style="width:6px;height:38px;background:#38BDF8;border-radius:3px;"></div>
+          <div style="width:6px;height:52px;background:#0284C7;border-radius:3px;"></div>
+          <div style="width:6px;height:42px;background:#4ADE80;border-radius:3px;"></div>
+          <div style="width:6px;height:28px;background:#38BDF8;border-radius:3px;"></div>
+          <div style="width:6px;height:46px;background:#0284C7;border-radius:3px;"></div>
+          <div style="width:6px;height:32px;background:#4ADE80;border-radius:3px;"></div>
+          <div style="width:6px;height:48px;background:#38BDF8;border-radius:3px;"></div>
+          <div style="width:6px;height:38px;background:#0284C7;border-radius:3px;"></div>
+          <div style="width:6px;height:50px;background:#4ADE80;border-radius:3px;"></div>
+          <div style="width:6px;height:34px;background:#38BDF8;border-radius:3px;"></div>
+          <div style="width:6px;height:44px;background:#0284C7;border-radius:3px;"></div>
+          <div style="width:6px;height:28px;background:#4ADE80;border-radius:3px;"></div>
+          <div style="width:6px;height:38px;background:#38BDF8;border-radius:3px;"></div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:12px;margin-top:8px;">
+          <span style="font-family:'JetBrains Mono';font-size:11px;color:#38BDF8;">0:28</span>
+          <div style="flex:1;height:4px;background:#1E293B;border-radius:2px;position:relative;">
+            <div style="width:87%;height:100%;background:linear-gradient(90deg, #0284C7, #4ADE80);border-radius:2px;"></div>
+            <div style="position:absolute;left:87%;top:-4px;width:12px;height:12px;border-radius:50%;background:#4ADE80;box-shadow:0 0 8px #4ADE80;"></div>
+          </div>
+          <span style="font-family:'JetBrains Mono';font-size:11px;color:#64748B;">0:32</span>
         </div>
       </div>
 
-      <div style="display:flex;gap:12px;margin-top:16px;">
-        <span style="font-family:'JetBrains Mono';font-size:12px;color:#64748B;">Origin: WhatsApp Voice Note · Encrypted · Sheikh Zayed Rd Executive Ingestion</span>
+      <!-- Diarization & Audio Metrics -->
+      <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:10px;">
+        <div style="background:#070B14;border:1px solid #1E293B;border-radius:10px;padding:8px 12px;text-align:center;">
+          <div style="font-family:'JetBrains Mono';font-size:10px;color:#94A3B8;text-transform:uppercase;">Speaker</div>
+          <div style="font-family:'JetBrains Mono';font-size:12.5px;font-weight:700;color:#38BDF8;margin-top:2px;">Tareq M. (VP Ops)</div>
+        </div>
+        <div style="background:#070B14;border:1px solid #1E293B;border-radius:10px;padding:8px 12px;text-align:center;">
+          <div style="font-family:'JetBrains Mono';font-size:10px;color:#94A3B8;text-transform:uppercase;">Audio Noise Gate</div>
+          <div style="font-family:'JetBrains Mono';font-size:12.5px;font-weight:700;color:#4ADE80;margin-top:2px;">-42dB Studio Clean</div>
+        </div>
+        <div style="background:#070B14;border:1px solid #1E293B;border-radius:10px;padding:8px 12px;text-align:center;">
+          <div style="font-family:'JetBrains Mono';font-size:10px;color:#94A3B8;text-transform:uppercase;">Match Accuracy</div>
+          <div style="font-family:'JetBrains Mono';font-size:12.5px;font-weight:700;color:#FBBF24;margin-top:2px;">99.8% Grounded</div>
+        </div>
+      </div>
+
+      <!-- Live Streamed Transcript -->
+      <div style="background:#070B14;border:1px solid #1E293B;border-radius:14px;padding:16px 20px;font-family:'JetBrains Mono';font-size:14px;line-height:1.6;color:#CBD5E1;">
+        <div style="font-size:11px;color:#64748B;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Live Audio Transcription:</div>
+        “Flávio, we just received <span style="color:#38BDF8;font-weight:800;border-bottom:2px solid #0284C7;">Apex Capital's</span> revision. They want to proceed with <span style="color:#4ADE80;font-weight:800;border-bottom:2px solid #16A34A;">Milestone 1 ($50k)</span>, but need delivery onboarding moved to <span style="color:#FBBF24;font-weight:800;border-bottom:2px solid #D97706;">Thursday morning</span>. Can we confirm this before their committee meets at 2 PM?”
+      </div>
+
+      <!-- Vault Tokenization Matrix -->
+      <div style="background:#070B14;border:1px solid #1E293B;border-radius:14px;padding:14px 18px;display:flex;flex-direction:column;gap:8px;">
+        <div style="font-family:'JetBrains Mono';font-size:11px;color:#94A3B8;text-transform:uppercase;letter-spacing:0.8px;">Tokenized Security Payload (Air-Gapped Sandbox):</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-family:'JetBrains Mono';font-size:11.5px;">
+          <div style="background:rgba(2,132,199,0.15);padding:6px 10px;border-radius:6px;border:1px solid #0284C7;color:#38BDF8;">
+            Entity: [Apex Capital] ➔ <strong style="color:#FFFFFF;">VAULT-APX-894</strong>
+          </div>
+          <div style="background:rgba(22,163,74,0.15);padding:6px 10px;border-radius:6px;border:1px solid #16A34A;color:#4ADE80;">
+            Milestone: [$50,000 USD] ➔ <strong style="color:#FFFFFF;">MS1_SECURE_VAL</strong>
+          </div>
+          <div style="background:rgba(245,158,11,0.15);padding:6px 10px;border-radius:6px;border:1px solid #D97706;color:#FBBF24;">
+            Schedule: [Thu 10:00 AM] ➔ <strong style="color:#FFFFFF;">DIFC_SLOT_094</strong>
+          </div>
+          <div style="background:rgba(168,85,247,0.15);padding:6px 10px;border-radius:6px;border:1px solid #9333EA;color:#C084FC;">
+            Committee: [Apex Board] ➔ <strong style="color:#FFFFFF;">AUTH_BOARD_GATE</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- PII Shield Active -->
+      <div style="background:rgba(22,163,74,0.12);border:1px solid rgba(34,197,94,0.3);border-radius:12px;padding:10px 16px;display:flex;align-items:center;gap:12px;font-family:'JetBrains Mono';font-size:12px;color:#86EFAC;">
+        <span style="font-size:18px;">🛡️</span>
+        <div><strong>PII Shield Enforced:</strong> Zero client data transmitted to public LLM training sets. SOC2 Type II Aligned.</div>
+      </div>
+
+      <!-- Footer Bar -->
+      <div style="display:flex;justify-content:space-between;align-items:center;padding-top:8px;border-top:1px solid #1E293B;">
+        <span style="font-family:'JetBrains Mono';font-size:11px;color:#64748B;">Origin: WhatsApp Voice Note · Encrypted Gateway</span>
+        <span style="font-family:'JetBrains Mono';font-size:11px;color:#38BDF8;font-weight:700;">SHA-256 Validated</span>
       </div>
     </div>
 
-    <!-- Right Column: Security Radar & Extracted Entities -->
-    <div style="display:flex;flex-direction:column;gap:20px;justify-content:space-between;">
+    <!-- Right Column: Pipeline Stepper, Structured Entity Matrix & Governance -->
+    <div style="display:flex;flex-direction:column;gap:14px;">
       
-      <!-- Top Security Banner -->
-      <div class="glass-card" style="border-radius:20px;padding:26px 32px;display:flex;align-items:center;gap:20px;border:1.5px solid #16A34A;box-shadow:0 0 30px rgba(22,163,74,0.2);">
-        <div style="width:52px;height:52px;border-radius:50%;background:#16A34A;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900;shrink:0;">✓</div>
-        <div>
-          <div style="font-size:20px;font-weight:800;color:#4ADE80;margin-bottom:2px;">Sanitized & Parsed in 1.2 Seconds</div>
-          <div style="font-family:'JetBrains Mono';font-size:13.5px;color:#94A3B8;">PII Strip Active · Enterprise Private API Tier · Zero Model Training on Data</div>
+      <!-- Pipeline Stepper -->
+      <div class="glass-card" style="border-radius:20px;padding:18px 24px;border:1.5px solid #16A34A;box-shadow:0 0 35px rgba(22,163,74,0.22);display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:34px;height:34px;border-radius:50%;background:#16A34A;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:900;">✓</div>
+            <div>
+              <div style="font-size:17px;font-weight:800;color:#4ADE80;">Sanitized & Parsed in 1.18s Total</div>
+              <div style="font-family:'JetBrains Mono';font-size:11px;color:#94A3B8;">Air-Gapped Private VPC · Enterprise SLA &lt; 1.5s</div>
+            </div>
+          </div>
+          <span style="font-family:'JetBrains Mono';font-size:11px;background:rgba(22,163,74,0.25);color:#4ADE80;padding:4px 10px;border-radius:6px;font-weight:800;">LATENCY: 1,180ms</span>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(4, 1fr);gap:8px;font-family:'JetBrains Mono';font-size:11px;text-align:center;">
+          <div style="background:#070B14;border:1px solid #16A34A;padding:8px 4px;border-radius:8px;color:#4ADE80;">
+            ✓ 1. Audio Ingest<br><span style="color:#64748B;font-size:10px;">0.22s</span>
+          </div>
+          <div style="background:#070B14;border:1px solid #16A34A;padding:8px 4px;border-radius:8px;color:#4ADE80;">
+            ✓ 2. PII Scrubber<br><span style="color:#64748B;font-size:10px;">0.31s</span>
+          </div>
+          <div style="background:#070B14;border:1px solid #16A34A;padding:8px 4px;border-radius:8px;color:#4ADE80;">
+            ✓ 3. Entity Extract<br><span style="color:#64748B;font-size:10px;">0.38s</span>
+          </div>
+          <div style="background:#070B14;border:1px solid #16A34A;padding:8px 4px;border-radius:8px;color:#4ADE80;">
+            ✓ 4. JSON Schema<br><span style="color:#64748B;font-size:10px;">0.27s</span>
+          </div>
         </div>
       </div>
 
       <!-- Entity Extraction Matrix -->
-      <div class="glass-card" style="border-radius:20px;padding:30px 34px;display:flex;flex-direction:column;gap:14px;">
-        <div style="font-family:'JetBrains Mono';font-size:13px;font-weight:800;color:#38BDF8;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Structured Entity Extraction:</div>
+      <div class="glass-card" style="border-radius:20px;padding:22px 26px;display:flex;flex-direction:column;gap:10px;">
+        <div style="font-family:'JetBrains Mono';font-size:12px;font-weight:800;color:#38BDF8;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;">Structured Entity Extraction:</div>
         
-        <div style="display:flex;align-items:center;justify-content:space-between;background:#080C16;padding:14px 20px;border-radius:12px;border:1px solid #1E293B;">
-          <span style="color:#94A3B8;font-size:15px;">Target Client Account:</span>
-          <span style="color:#FFFFFF;font-weight:800;font-family:'JetBrains Mono';font-size:16px;">Apex Capital (UAE Strategic Account)</span>
+        <div style="display:flex;align-items:center;justify-content:space-between;background:#070B14;padding:12px 16px;border-radius:10px;border:1px solid #1E293B;">
+          <span style="color:#94A3B8;font-size:13.5px;">Target Client Account:</span>
+          <span style="color:#FFFFFF;font-weight:800;font-family:'JetBrains Mono';font-size:14px;">Apex Capital (UAE Strategic Account)</span>
         </div>
-        <div style="display:flex;align-items:center;justify-content:space-between;background:#080C16;padding:14px 20px;border-radius:12px;border:1px solid #1E293B;">
-          <span style="color:#94A3B8;font-size:15px;">Revenue Milestone:</span>
-          <span style="color:#4ADE80;font-weight:800;font-family:'JetBrains Mono';font-size:17px;">$50,000 USD (Milestone 1 Approved)</span>
+        <div style="display:flex;align-items:center;justify-content:space-between;background:#070B14;padding:12px 16px;border-radius:10px;border:1px solid #1E293B;">
+          <span style="color:#94A3B8;font-size:13.5px;">Revenue Milestone:</span>
+          <span style="color:#4ADE80;font-weight:800;font-family:'JetBrains Mono';font-size:14.5px;">$50,000 USD (Milestone 1 Approved)</span>
         </div>
-        <div style="display:flex;align-items:center;justify-content:space-between;background:#080C16;padding:14px 20px;border-radius:12px;border:1px solid #1E293B;">
-          <span style="color:#94A3B8;font-size:15px;">Capacity & Onboarding:</span>
-          <span style="color:#38BDF8;font-weight:800;font-family:'JetBrains Mono';font-size:16px;">Thursday 10:00 AM GST (Capacity Locked)</span>
+        <div style="display:flex;align-items:center;justify-content:space-between;background:#070B14;padding:12px 16px;border-radius:10px;border:1px solid #1E293B;">
+          <span style="color:#94A3B8;font-size:13.5px;">Capacity & Onboarding:</span>
+          <span style="color:#38BDF8;font-weight:800;font-family:'JetBrains Mono';font-size:14px;">Thursday 10:00 AM GST (Capacity Locked)</span>
         </div>
-        <div style="display:flex;align-items:center;justify-content:space-between;background:#080C16;padding:14px 20px;border-radius:12px;border:1px solid #1E293B;">
-          <span style="color:#94A3B8;font-size:15px;">Governance Constraint:</span>
-          <span style="color:#FBBF24;font-weight:800;font-family:'JetBrains Mono';font-size:16px;">Requires 1-Click Sign-Off Before 2:00 PM</span>
+        <div style="display:flex;align-items:center;justify-content:space-between;background:#070B14;padding:12px 16px;border-radius:10px;border:1px solid #1E293B;">
+          <span style="color:#94A3B8;font-size:13.5px;">Governance Constraint:</span>
+          <span style="color:#FBBF24;font-weight:800;font-family:'JetBrains Mono';font-size:14px;">Requires 1-Click Sign-Off Before 2:00 PM</span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;background:#070B14;padding:12px 16px;border-radius:10px;border:1px solid #1E293B;">
+          <span style="color:#94A3B8;font-size:13.5px;">Target Reviewer:</span>
+          <span style="color:#C084FC;font-weight:800;font-family:'JetBrains Mono';font-size:14px;">Apex Investment Committee</span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;background:#070B14;padding:12px 16px;border-radius:10px;border:1px solid #1E293B;">
+          <span style="color:#94A3B8;font-size:13.5px;">Output Action:</span>
+          <span style="color:#38BDF8;font-weight:800;font-family:'JetBrains Mono';font-size:14px;">Route to Step 02 (Strategic Synthesis)</span>
         </div>
       </div>
 
-      <!-- Bottom Status Pill -->
-      <div style="background:rgba(13,20,36,0.85);border:1px solid #1E293B;border-radius:14px;padding:14px 24px;display:flex;justify-content:space-between;align-items:center;">
+      <!-- Security & Compliance Attestation -->
+      <div class="glass-card" style="border-radius:16px;padding:14px 20px;border:1px solid #1E293B;display:grid;grid-template-columns:repeat(3, 1fr);gap:10px;">
+        <div>
+          <span style="font-family:'JetBrains Mono';font-size:10.5px;color:#94A3B8;text-transform:uppercase;display:block;">DIFC Law No. 5</span>
+          <span style="font-family:'JetBrains Mono';font-size:12px;font-weight:700;color:#4ADE80;">✓ 100% Compliant</span>
+        </div>
+        <div>
+          <span style="font-family:'JetBrains Mono';font-size:10.5px;color:#94A3B8;text-transform:uppercase;display:block;">Public LLM Opt-Out</span>
+          <span style="font-family:'JetBrains Mono';font-size:12px;font-weight:700;color:#38BDF8;">✓ Enforced Gateway</span>
+        </div>
+        <div>
+          <span style="font-family:'JetBrains Mono';font-size:10.5px;color:#94A3B8;text-transform:uppercase;display:block;">SLA Delivery</span>
+          <span style="font-family:'JetBrains Mono';font-size:12px;font-weight:700;color:#FBBF24;">⚡ &lt; 1,500ms</span>
+        </div>
+      </div>
+
+      <!-- Executive Contrast Card -->
+      <div class="glass-card" style="border-radius:16px;padding:16px 20px;border:1px solid rgba(245,158,11,0.4);display:flex;justify-content:space-between;align-items:center;gap:16px;">
+        <div style="font-size:12.5px;color:#CBD5E1;line-height:1.45;">
+          <strong style="color:#FBBF24;display:block;margin-bottom:2px;font-family:'JetBrains Mono';">THE EXECUTIVE CONTRAST:</strong>
+          Consumer AI leaks client data to public training. This cockpit isolates every voice note into an air-gapped private sandbox.
+        </div>
+        <span style="font-family:'JetBrains Mono';font-size:11px;color:#4ADE80;font-weight:800;background:rgba(22,163,74,0.2);padding:6px 12px;border-radius:8px;border:1px solid #16A34A;shrink:0;">100% PROTECTED</span>
+      </div>
+
+      <!-- Bottom Status Bar -->
+      <div style="background:rgba(10,16,30,0.9);border:1px solid #1E293B;border-radius:14px;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;">
         <span style="font-family:'JetBrains Mono';font-size:12px;color:#94A3B8;">Next Stage: Synthesize 3-Bullet Board Brief & Pre-Draft Reply</span>
         <span style="font-family:'JetBrains Mono';font-size:12px;color:#4ADE80;font-weight:700;">Status: Ready for Synthesis →</span>
       </div>

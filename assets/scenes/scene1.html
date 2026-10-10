@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&family=Space+Grotesk:wght@600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap');
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     width: 1920px;
     height: 1080px;
     overflow: hidden;
-    background: #060911;
+    background: #040711;
     color: #F8FAFC;
     font-family: 'Inter', sans-serif;
     position: relative;
@@ -17,78 +17,115 @@
     background-image: 
       linear-gradient(rgba(30, 41, 59, 0.22) 1px, transparent 1px),
       linear-gradient(90deg, rgba(30, 41, 59, 0.22) 1px, transparent 1px);
-    background-size: 48px 48px;
+    background-size: 40px 40px;
   }
   .hud-pill {
     position: absolute;
-    top: 32px;
+    top: 24px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(13, 20, 36, 0.96);
-    border: 1px solid rgba(56, 189, 248, 0.35);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 24px rgba(56, 189, 248, 0.2);
+    background: rgba(10, 16, 30, 0.96);
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    box-shadow: 0 12px 36px rgba(0,0,0,0.7), 0 0 24px rgba(56, 189, 248, 0.25);
     border-radius: 9999px;
     padding: 10px 32px;
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 16px;
     z-index: 50;
   }
   .hud-tag {
     font-family: 'JetBrains Mono', monospace;
     font-size: 13px;
     font-weight: 800;
-    padding: 4px 12px;
+    padding: 4px 14px;
     border-radius: 6px;
     letter-spacing: 1px;
     text-transform: uppercase;
   }
   .hud-title {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 17px;
-    font-weight: 800;
-    letter-spacing: 0.5px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16.5px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
     color: #FFFFFF;
   }
   .glass-card {
-    background: rgba(13, 20, 36, 0.92);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(51, 65, 85, 0.8);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    background: rgba(10, 16, 30, 0.92);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(51, 65, 85, 0.7);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+  .glow-cyan {
+    box-shadow: 0 0 40px rgba(56, 189, 248, 0.25);
+  }
+  .glow-emerald {
+    box-shadow: 0 0 40px rgba(34, 197, 94, 0.25);
+  }
+  .glow-amber {
+    box-shadow: 0 0 40px rgba(245, 158, 11, 0.25);
   }
 </style>
 </head>
 
 <body>
-  <div style="position:absolute;inset:0;background:url('file:///W:/workspaces antigravity/opportunity-cockpit-showcase/assets/hero_executive_dubai.jpg') center/cover no-repeat;filter:brightness(0.72);"></div>
-  <div style="position:absolute;inset:0;background:radial-gradient(circle at center, rgba(6,9,17,0.35) 0%, rgba(6,9,17,0.85) 100%);"></div>
+  <div style="position:absolute;inset:0;background:url('file:///W:/workspaces antigravity/opportunity-cockpit-showcase/assets/hero_executive_dubai.jpg') center/cover no-repeat;filter:brightness(0.66) contrast(1.15);"></div>
+  <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 40%, rgba(4,7,17,0.3) 0%, rgba(4,7,17,0.88) 100%);"></div>
+  <div style="position:absolute;top:0;left:0;right:0;height:120px;background:linear-gradient(180deg, rgba(4,7,17,0.92) 0%, transparent 100%);"></div>
+
+  <!-- Top Financial / Operations HUD Ticker -->
+  <div style="position:absolute;top:28px;left:60px;font-family:'JetBrains Mono';font-size:12px;color:#94A3B8;letter-spacing:0.8px;display:flex;align-items:center;gap:10px;">
+    <span style="display:flex;align-items:center;gap:6px;background:rgba(2,132,199,0.3);border:1px solid #0284C7;color:#38BDF8;padding:5px 12px;border-radius:6px;font-weight:700;">
+      <span style="width:7px;height:7px;border-radius:50%;background:#38BDF8;box-shadow:0 0 8px #38BDF8;"></span>
+      DUBAI DIFC COCKPIT · GST
+    </span>
+    <span style="background:rgba(10,16,30,0.85);padding:5px 10px;border-radius:6px;border:1px solid #1E293B;">DFM: 4,520 (+1.2%)</span>
+  </div>
 
   <div class="hud-pill">
     <span class="hud-tag" style="background:#0284C7;color:#FFFFFF;">EXECUTIVE BRIEFING</span>
     <span class="hud-title">EXECUTIVE AI COMMAND CENTER · DUBAI C-SUITE OPERATIONS</span>
   </div>
 
-  <div style="position:absolute;bottom:64px;left:70px;right:70px;display:flex;justify-content:space-between;align-items:flex-end;">
-    <div class="glass-card" style="max-width:920px;border-radius:24px;padding:38px 46px;border:1px solid rgba(56,189,248,0.3);">
-      <div style="display:flex;gap:12px;margin-bottom:14px;">
-        <span style="font-family:'JetBrains Mono';font-size:12px;font-weight:800;background:rgba(2,132,199,0.25);color:#38BDF8;padding:4px 12px;border-radius:6px;border:1px solid #0284C7;">DUBAI, UAE (GST UTC+4)</span>
-        <span style="font-family:'JetBrains Mono';font-size:12px;font-weight:800;background:rgba(22,163,74,0.25);color:#4ADE80;padding:4px 12px;border-radius:6px;border:1px solid #16A34A;">ZERO ROGUE AI ACTIVE</span>
-        <span style="font-family:'JetBrains Mono';font-size:12px;font-weight:800;background:rgba(217,119,6,0.25);color:#FBBF24;padding:4px 12px;border-radius:6px;border:1px solid #D97706;">EXPERT TIER $39/HR</span>
+  <div style="position:absolute;top:28px;right:60px;font-family:'JetBrains Mono';font-size:12px;color:#4ADE80;letter-spacing:1px;font-weight:700;display:flex;align-items:center;gap:8px;background:rgba(22,163,74,0.2);border:1px solid #16A34A;padding:5px 14px;border-radius:6px;">
+    <span style="width:7px;height:7px;border-radius:50%;background:#4ADE80;box-shadow:0 0 8px #4ADE80;"></span>
+    SOVEREIGN GOVERNANCE ACTIVE
+  </div>
+
+  <!-- Bottom Hero Bar -->
+  <div style="position:absolute;bottom:48px;left:60px;right:60px;display:flex;justify-content:space-between;align-items:flex-end;gap:30px;">
+    <div class="glass-card" style="flex:1;border-radius:24px;padding:36px 44px;border:1px solid rgba(56,189,248,0.35);">
+      <div style="display:flex;gap:12px;margin-bottom:14px;flex-wrap:wrap;">
+        <span style="font-family:'JetBrains Mono';font-size:12px;font-weight:800;background:rgba(2,132,199,0.25);color:#38BDF8;padding:5px 12px;border-radius:6px;border:1px solid #0284C7;">DUBAI C-SUITE STACK</span>
+        <span style="font-family:'JetBrains Mono';font-size:12px;font-weight:800;background:rgba(22,163,74,0.25);color:#4ADE80;padding:5px 12px;border-radius:6px;border:1px solid #16A34A;">ZERO ROGUE AI POLICY</span>
+        <span style="font-family:'JetBrains Mono';font-size:12px;font-weight:800;background:rgba(245,158,11,0.25);color:#FBBF24;padding:5px 12px;border-radius:6px;border:1px solid #D97706;">EXPERT TIER $39/HR</span>
+        <span style="font-family:'JetBrains Mono';font-size:12px;font-weight:800;background:rgba(168,85,247,0.25);color:#C084FC;padding:5px 12px;border-radius:6px;border:1px solid #9333EA;">SPRINT 1 &lt; 14 DAYS</span>
       </div>
-      <h1 style="font-family:'Plus Jakarta Sans';font-size:44px;font-weight:800;line-height:1.15;color:#FFFFFF;margin-bottom:14px;">Turning Raw AI Models into Trusted Leadership Habits</h1>
-      <p style="font-size:18px;color:#94A3B8;line-height:1.55;">A disciplined operational framework for CEOs and Department Leads in Dubai. Ingest unstructured voice communications, synthesize decision digests, and enforce 1-click deterministic governance.</p>
+      <h1 style="font-family:'Space Grotesk';font-size:46px;font-weight:800;line-height:1.15;color:#FFFFFF;margin-bottom:14px;letter-spacing:-0.5px;">
+        Turning Raw AI Models into <span style="background:linear-gradient(90deg, #38BDF8, #4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Trusted Leadership Habits</span>
+      </h1>
+      <p style="font-size:18px;color:#94A3B8;line-height:1.55;max-width:980px;">
+        A disciplined operational framework for CEOs and Department Leads in Dubai. Ingest unstructured voice communications, synthesize 3-bullet decision digests, and enforce 1-click deterministic governance.
+      </p>
+      <div style="display:flex;gap:28px;margin-top:20px;padding-top:18px;border-top:1px solid rgba(51,65,85,0.7);font-family:'JetBrains Mono';font-size:12.5px;color:#CBD5E1;">
+        <span>⚡ <strong>Ingestion Latency:</strong> 1.2s</span>
+        <span>🛡️ <strong>PII Leakage:</strong> 0.00% Guaranteed</span>
+        <span>🎯 <strong>Audit Trail:</strong> 100% Deterministic</span>
+        <span>⏱️ <strong>UAE Business Hours:</strong> Fully Aligned</span>
+      </div>
     </div>
 
-    <div style="display:flex;gap:20px;">
-      <div class="glass-card" style="border-radius:20px;padding:28px 36px;text-align:center;min-width:230px;border:1px solid rgba(22,163,74,0.45);">
+    <!-- Right Metric Badges -->
+    <div style="display:flex;flex-direction:column;gap:18px;">
+      <div class="glass-card glow-emerald" style="border-radius:20px;padding:24px 34px;text-align:center;min-width:260px;border:1.5px solid rgba(34,197,94,0.5);">
         <div style="font-family:'JetBrains Mono';font-size:44px;font-weight:800;color:#4ADE80;line-height:1;">5–10h</div>
         <div style="font-size:13px;font-weight:700;color:#94A3B8;text-transform:uppercase;margin-top:8px;letter-spacing:0.5px;">Weekly Recovered</div>
-        <div style="font-family:'JetBrains Mono';font-size:11px;color:#16A34A;margin-top:4px;font-weight:800;">SPRINT 01 PILOT</div>
+        <div style="font-family:'JetBrains Mono';font-size:11.5px;color:#16A34A;margin-top:4px;font-weight:800;">SPRINT 01 QUICK-WIN</div>
       </div>
-      <div class="glass-card" style="border-radius:20px;padding:28px 36px;text-align:center;min-width:230px;border:1px solid rgba(56,189,248,0.45);">
+      <div class="glass-card glow-cyan" style="border-radius:20px;padding:24px 34px;text-align:center;min-width:260px;border:1.5px solid rgba(56,189,248,0.5);">
         <div style="font-family:'JetBrains Mono';font-size:44px;font-weight:800;color:#38BDF8;line-height:1;">100%</div>
         <div style="font-size:13px;font-weight:700;color:#94A3B8;text-transform:uppercase;margin-top:8px;letter-spacing:0.5px;">Deterministic</div>
-        <div style="font-family:'JetBrains Mono';font-size:11px;color:#0284C7;margin-top:4px;font-weight:800;">HUMAN GATE IN 1-CLICK</div>
+        <div style="font-family:'JetBrains Mono';font-size:11.5px;color:#0284C7;margin-top:4px;font-weight:800;">1-CLICK HUMAN GATE</div>
       </div>
     </div>
   </div>

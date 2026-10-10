@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&family=Space+Grotesk:wght@600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap');
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     width: 1920px;
     height: 1080px;
     overflow: hidden;
-    background: #060911;
+    background: #040711;
     color: #F8FAFC;
     font-family: 'Inter', sans-serif;
     position: relative;
@@ -17,110 +17,214 @@
     background-image: 
       linear-gradient(rgba(30, 41, 59, 0.22) 1px, transparent 1px),
       linear-gradient(90deg, rgba(30, 41, 59, 0.22) 1px, transparent 1px);
-    background-size: 48px 48px;
+    background-size: 40px 40px;
   }
   .hud-pill {
     position: absolute;
-    top: 32px;
+    top: 24px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(13, 20, 36, 0.96);
-    border: 1px solid rgba(56, 189, 248, 0.35);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 24px rgba(56, 189, 248, 0.2);
+    background: rgba(10, 16, 30, 0.96);
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    box-shadow: 0 12px 36px rgba(0,0,0,0.7), 0 0 24px rgba(56, 189, 248, 0.25);
     border-radius: 9999px;
     padding: 10px 32px;
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 16px;
     z-index: 50;
   }
   .hud-tag {
     font-family: 'JetBrains Mono', monospace;
     font-size: 13px;
     font-weight: 800;
-    padding: 4px 12px;
+    padding: 4px 14px;
     border-radius: 6px;
     letter-spacing: 1px;
     text-transform: uppercase;
   }
   .hud-title {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 17px;
-    font-weight: 800;
-    letter-spacing: 0.5px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16.5px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
     color: #FFFFFF;
   }
   .glass-card {
-    background: rgba(13, 20, 36, 0.92);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(51, 65, 85, 0.8);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    background: rgba(10, 16, 30, 0.92);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(51, 65, 85, 0.7);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+  .glow-cyan {
+    box-shadow: 0 0 40px rgba(56, 189, 248, 0.25);
+  }
+  .glow-emerald {
+    box-shadow: 0 0 40px rgba(34, 197, 94, 0.25);
+  }
+  .glow-amber {
+    box-shadow: 0 0 40px rgba(245, 158, 11, 0.25);
   }
 </style>
 </head>
 
 <body>
-  <!-- Ambient Glow -->
-  <div style="position:absolute;top:30%;left:50%;transform:translate(-50%, -50%);width:900px;height:500px;background:radial-gradient(circle, rgba(22,163,74,0.2) 0%, transparent 70%);pointer-events:none;"></div>
+  <div style="position:absolute;top:30%;left:50%;transform:translate(-50%, -50%);width:950px;height:520px;background:radial-gradient(circle, rgba(22,163,74,0.22) 0%, transparent 70%);pointer-events:none;"></div>
 
   <div class="hud-pill">
     <span class="hud-tag" style="background:#D97706;color:#FFFFFF;">STEP 03: GOVERNANCE</span>
     <span class="hud-title">THE 1-CLICK HUMAN DECISION GATE · 100% DETERMINISTIC CONTROL</span>
   </div>
 
-  <div style="position:absolute;inset:104px 70px 48px 70px;display:flex;flex-direction:column;justify-content:space-between;align-items:center;">
+  <div style="position:absolute;top:92px;bottom:32px;left:60px;right:60px;display:flex;flex-direction:column;justify-content:space-between;gap:14px;">
     
-    <div style="max-width:1100px;text-align:center;margin-top:10px;">
-      <h2 style="font-family:'Plus Jakarta Sans';font-size:46px;font-weight:800;color:#FFFFFF;margin-bottom:10px;">The Non-Negotiable Rule: Zero Rogue AI</h2>
-      <p style="font-size:19px;color:#94A3B8;line-height:1.5;max-width:980px;margin:0 auto;">The system handles 100% of the heavy synthesis and drafting, but executive leadership retains the sovereign trigger before any external email, Slack notification, or contract dispatch.</p>
+    <!-- Title Area -->
+    <div style="text-align:center;">
+      <h2 style="font-family:'Space Grotesk';font-size:38px;font-weight:800;color:#FFFFFF;margin-bottom:4px;">The Non-Negotiable Rule: Zero Rogue AI</h2>
+      <p style="font-size:16.5px;color:#94A3B8;line-height:1.45;max-width:1100px;margin:0 auto;">
+        The system handles 100% of the heavy synthesis and drafting, but executive leadership retains the sovereign trigger before any external email, Slack notification, or contract dispatch.
+      </p>
     </div>
 
-    <!-- The Grand 1-Click Approval Gate Box (Full Width 1360px) -->
-    <div class="glass-card" style="border:2px solid #16A34A;box-shadow:0 0 60px rgba(22,163,74,0.3), 0 24px 60px rgba(0,0,0,0.8);border-radius:24px;padding:36px 56px;display:flex;align-items:center;justify-content:space-between;max-width:1380px;width:100%;">
+    <!-- Center Stage: Grand Side-by-Side Contrast & Sovereign Approval Vault -->
+    <div style="display:grid;grid-template-columns:0.95fr 1.05fr;gap:24px;align-items:stretch;">
       
-      <div style="flex:1;">
-        <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
-          <span style="width:14px;height:14px;border-radius:50%;background:#F59E0B;box-shadow:0 0 14px #F59E0B;display:inline-block;"></span>
-          <span style="font-family:'JetBrains Mono';font-size:14px;font-weight:800;color:#FBBF24;text-transform:uppercase;letter-spacing:1px;">Gate State: Awaiting Leadership Review</span>
+      <!-- Left: The Unacceptable Risk of Rogue AI -->
+      <div class="glass-card" style="border-radius:22px;padding:26px 30px;border:1.5px solid rgba(239,68,68,0.5);box-shadow:0 0 40px rgba(239,68,68,0.15);display:flex;flex-direction:column;gap:14px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span style="width:10px;height:10px;border-radius:50%;background:#EF4444;box-shadow:0 0 10px #EF4444;"></span>
+          <span style="font-family:'JetBrains Mono';font-size:12px;font-weight:800;color:#F87171;text-transform:uppercase;letter-spacing:1px;">THE UNACCEPTABLE RISK: CONSUMER AI</span>
         </div>
-        <div style="font-size:24px;font-weight:800;color:#FFFFFF;margin-bottom:6px;">Apex Capital Milestone 1 & Calendar Confirmation</div>
-        <div style="font-family:'JetBrains Mono';font-size:13.5px;color:#64748B;">Audit Ref: WOC-GATE-8942 · Encrypted SHA-256 Validated · Ready to Dispatch</div>
+        <div style="font-size:19px;font-weight:800;color:#FFFFFF;">What Happens When AI Dispatches Autonomously?</div>
+        
+        <!-- 4 Distinct Detailed Risk Blocks -->
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="background:#070B14;border:1px solid rgba(239,68,68,0.3);padding:12px 14px;border-radius:10px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="color:#F87171;font-weight:800;font-size:13.5px;">✕ Hallucinated Commercial Promises</span>
+              <span style="font-family:'JetBrains Mono';font-size:10px;color:#EF4444;background:rgba(239,68,68,0.15);padding:2px 6px;border-radius:4px;">FINANCIAL LOSS</span>
+            </div>
+            <div style="font-size:12px;color:#94A3B8;margin-top:3px;">AI invents unapproved discounts, scope expansions, or tight turnaround dates without executive review.</div>
+          </div>
+
+          <div style="background:#070B14;border:1px solid rgba(239,68,68,0.3);padding:12px 14px;border-radius:10px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="color:#F87171;font-weight:800;font-size:13.5px;">✕ Proprietary Data Contamination</span>
+              <span style="font-family:'JetBrains Mono';font-size:10px;color:#EF4444;background:rgba(239,68,68,0.15);padding:2px 6px;border-radius:4px;">REGULATORY FINE</span>
+            </div>
+            <div style="font-size:12px;color:#94A3B8;margin-top:3px;">Client financial statements and confidential terms ingested into public model weights.</div>
+          </div>
+
+          <div style="background:#070B14;border:1px solid rgba(239,68,68,0.3);padding:12px 14px;border-radius:10px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="color:#F87171;font-weight:800;font-size:13.5px;">✕ Irreversible State Mutations</span>
+              <span style="font-family:'JetBrains Mono';font-size:10px;color:#EF4444;background:rgba(239,68,68,0.15);padding:2px 6px;border-radius:4px;">OPERATIONAL CHAOS</span>
+            </div>
+            <div style="font-size:12px;color:#94A3B8;margin-top:3px;">External emails, CRM deal stages, and calendars mutated without human leadership verification.</div>
+          </div>
+
+          <div style="background:#070B14;border:1px solid rgba(239,68,68,0.3);padding:12px 14px;border-radius:10px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="color:#F87171;font-weight:800;font-size:13.5px;">✕ Zero Legal Accountability Trail</span>
+              <span style="font-family:'JetBrains Mono';font-size:10px;color:#EF4444;background:rgba(239,68,68,0.15);padding:2px 6px;border-radius:4px;">GOVERNANCE BREACH</span>
+            </div>
+            <div style="font-size:12px;color:#94A3B8;margin-top:3px;">No cryptographic audit trail linking decisions to an authorized corporate executive or board signatory.</div>
+          </div>
+        </div>
+
+        <div style="background:rgba(239,68,68,0.12);border:1px solid #DC2626;border-radius:10px;padding:12px 14px;font-family:'JetBrains Mono';font-size:11.5px;color:#FCA5A5;text-align:center;">
+          SOVEREIGN RULE: ZERO AUTONOMOUS DISPATCHES · PROHIBITED IN C-SUITE
+        </div>
       </div>
 
-      <!-- The Big 3D Button -->
-      <div style="background:linear-gradient(135deg, #16A34A 0%, #15803D 100%);color:#FFFFFF;padding:22px 44px;border-radius:18px;box-shadow:0 14px 35px rgba(22,163,74,0.5);border:1px solid #4ADE80;display:flex;align-items:center;gap:18px;cursor:pointer;">
-        <span style="font-size:28px;font-weight:900;">✓</span>
-        <div style="text-align:left;">
-          <div style="font-family:'Plus Jakarta Sans';font-size:21px;font-weight:800;letter-spacing:0.4px;">APPROVE & DISPATCH</div>
-          <div style="font-family:'JetBrains Mono';font-size:11.5px;opacity:0.9;">1-CLICK DETERMINISTIC GATE</div>
+      <!-- Right: The Sovereign 1-Click Vault -->
+      <div class="glass-card glow-emerald" style="border-radius:24px;padding:26px 30px;border:2px solid #16A34A;display:flex;flex-direction:column;gap:14px;">
+        
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span style="width:10px;height:10px;border-radius:50%;background:#F59E0B;box-shadow:0 0 10px #F59E0B;"></span>
+            <span style="font-family:'JetBrains Mono';font-size:12px;font-weight:800;color:#FBBF24;text-transform:uppercase;letter-spacing:1px;">GATE STATE: AWAITING HUMAN REVIEW</span>
+          </div>
+          <span style="font-family:'JetBrains Mono';font-size:11.5px;color:#4ADE80;font-weight:700;">DUBAI 13:42:08 GST</span>
+        </div>
+
+        <div>
+          <div style="font-size:20.5px;font-weight:800;color:#FFFFFF;">Apex Capital Milestone 1 & Calendar Confirmation</div>
+          <div style="font-family:'JetBrains Mono';font-size:11.5px;color:#94A3B8;margin-top:2px;">Audit Ref: WOC-GATE-8942 · Encrypted SHA-256 Validated · Ready to Dispatch</div>
+        </div>
+
+        <!-- Action Payload Summary Box -->
+        <div style="background:#070B14;border:1px solid #1E293B;border-radius:12px;padding:12px 16px;font-family:'JetBrains Mono';font-size:12px;color:#CBD5E1;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div><span style="color:#64748B;">Recipient:</span> Tariq Al-Mansoor</div>
+          <div><span style="color:#64748B;">Milestone:</span> $50,000 USD</div>
+          <div><span style="color:#64748B;">Kickoff Slot:</span> Thu 10:00 AM GST</div>
+          <div><span style="color:#64748B;">Sync Stack:</span> Gmail + Cal + ClickUp</div>
+        </div>
+
+        <!-- The Sovereign 3D Button -->
+        <div style="background:linear-gradient(135deg, #16A34A 0%, #15803D 100%);color:#FFFFFF;padding:20px 30px;border-radius:14px;box-shadow:0 14px 40px rgba(22,163,74,0.6);border:1.5px solid #4ADE80;display:flex;align-items:center;justify-content:space-between;cursor:pointer;">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <span style="font-size:30px;font-weight:900;">✓</span>
+            <div>
+              <div style="font-family:'Space Grotesk';font-size:22px;font-weight:800;letter-spacing:0.5px;">APPROVE & DISPATCH</div>
+              <div style="font-family:'JetBrains Mono';font-size:11.5px;opacity:0.95;">1-CLICK DETERMINISTIC GATE · AIR-GAPPED TRANSMISSION</div>
+            </div>
+          </div>
+          <span style="background:rgba(255,255,255,0.2);padding:6px 12px;border-radius:6px;font-family:'JetBrains Mono';font-size:11.5px;font-weight:800;">100% SAFE</span>
+        </div>
+
+        <!-- Live Audit Trail Log Preview -->
+        <div style="background:#070B14;border:1px solid #1E293B;border-radius:12px;padding:12px 16px;font-family:'JetBrains Mono';font-size:11px;color:#94A3B8;display:flex;flex-direction:column;gap:4px;">
+          <div style="color:#38BDF8;">[13:41:52] Voice memo sanitized via private Whisper VPC (1.18s)</div>
+          <div style="color:#4ADE80;">[13:41:54] AI synthesis completed · 3-bullet digest grounded (100%)</div>
+          <div style="color:#CBD5E1;">[13:42:00] Pre-drafted deliverable locked with SHA-256 hash</div>
+          <div style="color:#FBBF24;font-weight:700;">[13:42:08] AWAITING SOVEREIGN HUMAN SIGN-OFF BEFORE OUTBOX RELEASE</div>
+        </div>
+
+        <!-- Secondary Controls & Security Guarantee -->
+        <div style="display:flex;justify-content:space-between;align-items:center;padding-top:6px;border-top:1px solid rgba(51,65,85,0.7);font-family:'JetBrains Mono';font-size:11.5px;color:#86EFAC;">
+          <div style="display:flex;gap:14px;">
+            <span style="color:#38BDF8;cursor:pointer;">[ ✏️ Edit Draft ]</span>
+            <span style="color:#FBBF24;cursor:pointer;">[ ⏸️ Hold for Review ]</span>
+            <span style="color:#F87171;cursor:pointer;">[ 🛑 Reject ]</span>
+          </div>
+          <span>🔒 Air-gapped lock. Zero mutations occur until click.</span>
         </div>
       </div>
 
     </div>
 
-    <!-- Governance Badges Across Bottom -->
-    <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:24px;max-width:1380px;width:100%;">
-      <div class="glass-card" style="border-radius:14px;padding:18px 24px;display:flex;align-items:center;gap:14px;border:1px solid #1E293B;">
+    <!-- Governance Badges Across Bottom (Grid 4 items, full width) -->
+    <div style="display:grid;grid-template-columns:repeat(4, 1fr);gap:16px;">
+      <div class="glass-card" style="border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:12px;border:1px solid #1E293B;">
         <span style="color:#4ADE80;font-size:22px;">🛡️</span>
         <div>
-          <div style="font-size:15px;font-weight:700;color:#FFFFFF;">Zero Model Training</div>
-          <div style="font-family:'JetBrains Mono';font-size:12px;color:#94A3B8;">Confidential data never leaks to public LLMs</div>
+          <div style="font-size:14px;font-weight:700;color:#FFFFFF;">Zero Model Training</div>
+          <div style="font-family:'JetBrains Mono';font-size:11px;color:#94A3B8;">Private API with zero data retention</div>
         </div>
       </div>
 
-      <div class="glass-card" style="border-radius:14px;padding:18px 24px;display:flex;align-items:center;gap:14px;border:1px solid #1E293B;">
+      <div class="glass-card" style="border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:12px;border:1px solid #1E293B;">
         <span style="color:#38BDF8;font-size:22px;">⚡</span>
         <div>
-          <div style="font-size:15px;font-weight:700;color:#FFFFFF;">Synchronized Dispatch</div>
-          <div style="font-family:'JetBrains Mono';font-size:12px;color:#94A3B8;">Email + ClickUp + Google Calendar updated</div>
+          <div style="font-size:14px;font-weight:700;color:#FFFFFF;">Atomic Synchronization</div>
+          <div style="font-family:'JetBrains Mono';font-size:11px;color:#94A3B8;">Email + Calendar + CRM in 1 click</div>
         </div>
       </div>
 
-      <div class="glass-card" style="border-radius:14px;padding:18px 24px;display:flex;align-items:center;gap:14px;border:1px solid #1E293B;">
+      <div class="glass-card" style="border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:12px;border:1px solid #1E293B;">
         <span style="color:#FBBF24;font-size:22px;">🔒</span>
         <div>
-          <div style="font-size:15px;font-weight:700;color:#FFFFFF;">Immutable Audit Trail</div>
-          <div style="font-family:'JetBrains Mono';font-size:12px;color:#94A3B8;">Timestamped log signed by Flávio Barros</div>
+          <div style="font-size:14px;font-weight:700;color:#FFFFFF;">Immutable Audit Trail</div>
+          <div style="font-family:'JetBrains Mono';font-size:11px;color:#94A3B8;">Cryptographic SHA-256 log signed</div>
+        </div>
+      </div>
+
+      <div class="glass-card" style="border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:12px;border:1px solid #1E293B;">
+        <span style="color:#C084FC;font-size:22px;">⚖️</span>
+        <div>
+          <div style="font-size:14px;font-weight:700;color:#FFFFFF;">UAE & DIFC Compliant</div>
+          <div style="font-family:'JetBrains Mono';font-size:11px;color:#94A3B8;">Law No. 45/2021 Data Protection Ready</div>
         </div>
       </div>
     </div>

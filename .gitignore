@@ -7,3 +7,4 @@ traces/
 benchmarks/
 outcomes/
 *.log
+__pycache__/

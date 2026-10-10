@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&family=Space+Grotesk:wght@600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap');
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     width: 1920px;
     height: 1080px;
     overflow: hidden;
-    background: #060911;
+    background: #040711;
     color: #F8FAFC;
     font-family: 'Inter', sans-serif;
     position: relative;
@@ -17,127 +17,229 @@
     background-image: 
       linear-gradient(rgba(30, 41, 59, 0.22) 1px, transparent 1px),
       linear-gradient(90deg, rgba(30, 41, 59, 0.22) 1px, transparent 1px);
-    background-size: 48px 48px;
+    background-size: 40px 40px;
   }
   .hud-pill {
     position: absolute;
-    top: 32px;
+    top: 24px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(13, 20, 36, 0.96);
-    border: 1px solid rgba(56, 189, 248, 0.35);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 24px rgba(56, 189, 248, 0.2);
+    background: rgba(10, 16, 30, 0.96);
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    box-shadow: 0 12px 36px rgba(0,0,0,0.7), 0 0 24px rgba(56, 189, 248, 0.25);
     border-radius: 9999px;
     padding: 10px 32px;
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 16px;
     z-index: 50;
   }
   .hud-tag {
     font-family: 'JetBrains Mono', monospace;
     font-size: 13px;
     font-weight: 800;
-    padding: 4px 12px;
+    padding: 4px 14px;
     border-radius: 6px;
     letter-spacing: 1px;
     text-transform: uppercase;
   }
   .hud-title {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 17px;
-    font-weight: 800;
-    letter-spacing: 0.5px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16.5px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
     color: #FFFFFF;
   }
   .glass-card {
-    background: rgba(13, 20, 36, 0.92);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(51, 65, 85, 0.8);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    background: rgba(10, 16, 30, 0.92);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(51, 65, 85, 0.7);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+  .glow-cyan {
+    box-shadow: 0 0 40px rgba(56, 189, 248, 0.25);
+  }
+  .glow-emerald {
+    box-shadow: 0 0 40px rgba(34, 197, 94, 0.25);
+  }
+  .glow-amber {
+    box-shadow: 0 0 40px rgba(245, 158, 11, 0.25);
   }
 </style>
 </head>
 
 <body>
-  <!-- Ambient Glow -->
-  <div style="position:absolute;top:20%;left:10%;width:600px;height:600px;background:radial-gradient(circle, rgba(22,163,74,0.18) 0%, transparent 70%);pointer-events:none;"></div>
-  <div style="position:absolute;bottom:15%;right:10%;width:600px;height:600px;background:radial-gradient(circle, rgba(2,132,199,0.18) 0%, transparent 70%);pointer-events:none;"></div>
+  <div style="position:absolute;top:15%;left:10%;width:650px;height:650px;background:radial-gradient(circle, rgba(22,163,74,0.18) 0%, transparent 70%);pointer-events:none;"></div>
+  <div style="position:absolute;bottom:15%;right:10%;width:650px;height:650px;background:radial-gradient(circle, rgba(2,132,199,0.18) 0%, transparent 70%);pointer-events:none;"></div>
 
   <div class="hud-pill">
     <span class="hud-tag" style="background:#0284C7;color:#FFFFFF;">STEP 02: SYNTHESIS</span>
     <span class="hud-title">AI STRATEGIC SYNTHESIS · 3-BULLET DIGEST · PRE-DRAFTED ACTIONS</span>
   </div>
 
-  <div style="position:absolute;inset:104px 60px 48px 60px;display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:stretch;">
+  <div style="position:absolute;top:92px;bottom:32px;left:60px;right:60px;display:grid;grid-template-columns:1fr 1fr;gap:24px;">
     
-    <!-- Left Column: 3 Strategic Decision Bullets -->
-    <div style="display:flex;flex-direction:column;gap:18px;justify-content:space-between;">
+    <!-- Left Column: 3 Strategic Decision Bullets + AI Reasoning Matrix + Benchmark -->
+    <div style="display:flex;flex-direction:column;gap:12px;">
       
+      <!-- Title -->
       <div>
-        <div style="font-family:'Plus Jakarta Sans';font-size:26px;font-weight:800;color:#FFFFFF;margin-bottom:6px;">Executive Decision Digest</div>
-        <div style="font-size:15px;color:#94A3B8;margin-bottom:20px;">Instant board-level triage: 3 high-impact bullets generated in &lt;1.5 seconds.</div>
+        <div style="font-family:'Space Grotesk';font-size:25px;font-weight:800;color:#FFFFFF;margin-bottom:2px;">Executive Decision Digest</div>
+        <div style="font-size:13.5px;color:#94A3B8;">Instant board-level triage: 3 high-impact bullets generated in &lt;1.4 seconds.</div>
+      </div>
 
-        <div style="display:flex;flex-direction:column;gap:16px;">
-          <div class="glass-card" style="border-radius:18px;padding:24px 28px;display:flex;gap:20px;align-items:flex-start;border:1px solid rgba(22,163,74,0.35);">
-            <div style="font-family:'JetBrains Mono';font-size:22px;font-weight:900;color:#4ADE80;background:rgba(22,163,74,0.18);border:1px solid #16A34A;width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;shrink:0;">01</div>
-            <div>
-              <div style="font-size:18px;font-weight:800;color:#FFFFFF;margin-bottom:4px;">Revenue Milestone Approved</div>
-              <div style="font-size:14.5px;color:#94A3B8;line-height:1.5;">Confirms $50,000 for Milestone 1 under approved commercial terms. Risk of scope creep mitigated.</div>
-            </div>
+      <!-- 3 Rich Decision Cards -->
+      <div class="glass-card" style="border-radius:16px;padding:18px 22px;display:flex;gap:16px;align-items:flex-start;border:1px solid rgba(22,163,74,0.35);">
+        <div style="font-family:'JetBrains Mono';font-size:20px;font-weight:900;color:#4ADE80;background:rgba(22,163,74,0.18);border:1px solid #16A34A;width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;shrink:0;">01</div>
+        <div style="flex:1;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px;">
+            <span style="font-size:16.5px;font-weight:800;color:#FFFFFF;">Revenue Milestone Approved</span>
+            <span style="font-family:'JetBrains Mono';font-size:10.5px;background:rgba(22,163,74,0.2);color:#4ADE80;padding:2px 8px;border-radius:4px;border:1px solid #16A34A;font-weight:700;">+$50,000 USD</span>
           </div>
+          <div style="font-size:13px;color:#94A3B8;line-height:1.45;">Confirms $50,000 for Milestone 1 under approved commercial terms. Risk of scope creep mitigated through locked milestone boundaries.</div>
+          <div style="font-family:'JetBrains Mono';font-size:11px;color:#86EFAC;margin-top:4px;">Commercial Terms: $25k at Kickoff · $25k at Sprint 1 Acceptance</div>
+        </div>
+      </div>
 
-          <div class="glass-card" style="border-radius:18px;padding:24px 28px;display:flex;gap:20px;align-items:flex-start;border:1px solid rgba(56,189,248,0.35);">
-            <div style="font-family:'JetBrains Mono';font-size:22px;font-weight:900;color:#38BDF8;background:rgba(2,132,199,0.18);border:1px solid #0284C7;width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;shrink:0;">02</div>
-            <div>
-              <div style="font-size:18px;font-weight:800;color:#FFFFFF;margin-bottom:4px;">Calendar & Delivery Alignment</div>
-              <div style="font-size:14.5px;color:#94A3B8;line-height:1.5;">Onboarding shifted to Thursday 10:00 AM GST. Engineering leads reserved without meeting overload.</div>
-            </div>
+      <div class="glass-card" style="border-radius:16px;padding:18px 22px;display:flex;gap:16px;align-items:flex-start;border:1px solid rgba(56,189,248,0.35);">
+        <div style="font-family:'JetBrains Mono';font-size:20px;font-weight:900;color:#38BDF8;background:rgba(2,132,199,0.18);border:1px solid #0284C7;width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;shrink:0;">02</div>
+        <div style="flex:1;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px;">
+            <span style="font-size:16.5px;font-weight:800;color:#FFFFFF;">Calendar & Delivery Alignment</span>
+            <span style="font-family:'JetBrains Mono';font-size:10.5px;background:rgba(2,132,199,0.2);color:#38BDF8;padding:2px 8px;border-radius:4px;border:1px solid #0284C7;font-weight:700;">THU 10:00 AM GST</span>
           </div>
+          <div style="font-size:13px;color:#94A3B8;line-height:1.45;">Onboarding shifted to Thursday 10:00 AM GST. Technical delivery leads reserved with zero meeting schedule overlap.</div>
+          <div style="font-family:'JetBrains Mono';font-size:11px;color:#38BDF8;margin-top:4px;">Participants: Apex Technical Steering Committee + Flávio Barros</div>
+        </div>
+      </div>
 
-          <div class="glass-card" style="border-radius:18px;padding:24px 28px;display:flex;gap:20px;align-items:flex-start;border:1px solid rgba(245,158,11,0.35);">
-            <div style="font-family:'JetBrains Mono';font-size:22px;font-weight:900;color:#FBBF24;background:rgba(217,119,6,0.18);border:1px solid #D97706;width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;shrink:0;">03</div>
-            <div>
-              <div style="font-size:18px;font-weight:800;color:#FFFFFF;margin-bottom:4px;">Time-Sensitive Authorization</div>
-              <div style="font-size:14.5px;color:#94A3B8;line-height:1.5;">Requires 1-click leadership sign-off prior to Apex 2:00 PM GST committee meeting.</div>
-            </div>
+      <div class="glass-card" style="border-radius:16px;padding:18px 22px;display:flex;gap:16px;align-items:flex-start;border:1px solid rgba(245,158,11,0.35);">
+        <div style="font-family:'JetBrains Mono';font-size:20px;font-weight:900;color:#FBBF24;background:rgba(217,119,6,0.18);border:1px solid #D97706;width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;shrink:0;">03</div>
+        <div style="flex:1;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px;">
+            <span style="font-size:16.5px;font-weight:800;color:#FFFFFF;">Time-Sensitive Authorization</span>
+            <span style="font-family:'JetBrains Mono';font-size:10.5px;background:rgba(217,119,6,0.2);color:#FBBF24;padding:2px 8px;border-radius:4px;border:1px solid #D97706;font-weight:700;">DEADLINE: 2:00 PM GST</span>
+          </div>
+          <div style="font-size:13px;color:#94A3B8;line-height:1.45;">Requires 1-click leadership sign-off prior to Apex 2:00 PM GST committee meeting. 1h 18m remaining.</div>
+          <div style="font-family:'JetBrains Mono';font-size:11px;color:#FBBF24;margin-top:4px;">Governance Rule: Never dispatch unapproved commitments to clients</div>
+        </div>
+      </div>
+
+      <!-- Decision Grounding & Compliance Guardrails Card -->
+      <div class="glass-card" style="border-radius:16px;padding:14px 20px;display:flex;flex-direction:column;gap:8px;border:1px solid #1E293B;">
+        <div style="font-family:'JetBrains Mono';font-size:11px;color:#94A3B8;text-transform:uppercase;letter-spacing:0.8px;">Autonomous Guardrail Verification:</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-family:'JetBrains Mono';font-size:11.5px;">
+          <div style="background:#070B14;padding:7px 10px;border-radius:6px;border:1px solid #1E293B;color:#4ADE80;">
+            ✓ Authority Limit: &lt; $100k Cap
+          </div>
+          <div style="background:#070B14;padding:7px 10px;border-radius:6px;border:1px solid #1E293B;color:#4ADE80;">
+            ✓ Calendar: 0 Slot Clashes
+          </div>
+          <div style="background:#070B14;padding:7px 10px;border-radius:6px;border:1px solid #1E293B;color:#4ADE80;">
+            ✓ Tone: Formal Board Protocol
+          </div>
+          <div style="background:#070B14;padding:7px 10px;border-radius:6px;border:1px solid #1E293B;color:#4ADE80;">
+            ✓ Scope: Locked to Milestone 1
           </div>
         </div>
       </div>
 
-      <div style="font-family:'JetBrains Mono';font-size:12.5px;color:#64748B;">Audit Status: Extracted with 100% deterministic accuracy · Zero hallucination check passed</div>
+      <!-- AI Grounding & Confidence Metrics Card -->
+      <div class="glass-card" style="border-radius:14px;padding:12px 18px;display:grid;grid-template-columns:repeat(3, 1fr);gap:10px;border:1px solid #1E293B;">
+        <div>
+          <span style="font-family:'JetBrains Mono';font-size:10.5px;color:#94A3B8;text-transform:uppercase;display:block;">Model Engine</span>
+          <span style="font-family:'JetBrains Mono';font-size:12px;font-weight:700;color:#38BDF8;">Claude 3.5 Private API</span>
+        </div>
+        <div>
+          <span style="font-family:'JetBrains Mono';font-size:10.5px;color:#94A3B8;text-transform:uppercase;display:block;">Grounding Score</span>
+          <span style="font-family:'JetBrains Mono';font-size:12px;font-weight:700;color:#4ADE80;">100% Deterministic</span>
+        </div>
+        <div>
+          <span style="font-family:'JetBrains Mono';font-size:10.5px;color:#94A3B8;text-transform:uppercase;display:block;">Hallucination Risk</span>
+          <span style="font-family:'JetBrains Mono';font-size:12px;font-weight:700;color:#FBBF24;">&lt; 0.01% (Air-Gapped)</span>
+        </div>
+      </div>
+
+      <!-- Acceleration Metric Card -->
+      <div class="glass-card glow-cyan" style="border-radius:16px;padding:16px 22px;border:1px solid rgba(56,189,248,0.45);display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <span style="font-family:'JetBrains Mono';font-size:11px;font-weight:800;color:#38BDF8;text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:3px;">OPERATIONAL ACCELERATION BENCHMARK:</span>
+          <span style="font-size:13.5px;color:#E2E8F0;">Manual C-Suite Triage: <strong>35–45 min</strong> ➔ Autonomous Cockpit: <strong>1.4 sec</strong></span>
+        </div>
+        <div style="text-align:right;">
+          <span style="font-family:'JetBrains Mono';font-size:24px;font-weight:900;color:#4ADE80;display:block;">⚡ 96.5%</span>
+          <span style="font-family:'JetBrains Mono';font-size:10.5px;color:#94A3B8;">TIME RECLAIMED</span>
+        </div>
+      </div>
 
     </div>
 
-    <!-- Right Column: Pre-Drafted Client Deliverable -->
-    <div class="glass-card" style="border-radius:22px;padding:34px 38px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid rgba(56,189,248,0.35);">
-      <div>
-        <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1E293B;padding-bottom:16px;margin-bottom:18px;">
+    <!-- Right Column: Pre-Drafted Client Deliverable in Superhuman C-Suite Client -->
+    <div class="glass-card" style="border-radius:24px;padding:24px 28px;display:flex;flex-direction:column;gap:14px;border:1px solid rgba(56,189,248,0.35);">
+      
+      <!-- Window Title Bar with macOS Chrome Dots -->
+      <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1E293B;padding-bottom:10px;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="display:flex;gap:6px;">
+            <div style="width:11px;height:11px;border-radius:50%;background:#EF4444;"></div>
+            <div style="width:11px;height:11px;border-radius:50%;background:#F59E0B;"></div>
+            <div style="width:11px;height:11px;border-radius:50%;background:#10B981;"></div>
+          </div>
           <div>
-            <div style="font-family:'JetBrains Mono';font-size:13px;font-weight:800;color:#38BDF8;text-transform:uppercase;">Pre-Drafted Deliverable (Waiting for Gate)</div>
-            <div style="font-size:13px;color:#94A3B8;margin-top:2px;">Tailored to C-Suite Tone & Voice Guidelines</div>
+            <div style="font-family:'JetBrains Mono';font-size:12px;font-weight:800;color:#38BDF8;text-transform:uppercase;">Superhuman Executive Client · Outbox Vault</div>
+            <div style="font-size:11px;color:#94A3B8;">Draft Status: Held for 1-Click Human Decision Gate</div>
           </div>
-          <span style="font-family:'JetBrains Mono';font-size:11px;background:#1E293B;color:#4ADE80;padding:5px 10px;border-radius:6px;font-weight:700;">READY TO DISPATCH</span>
         </div>
+        <span style="font-family:'JetBrains Mono';font-size:11px;background:#1E293B;color:#4ADE80;padding:4px 10px;border-radius:6px;font-weight:700;">HELD IN VAULT</span>
+      </div>
 
-        <div style="background:#080C16;border:1px solid #1E293B;border-radius:14px;padding:24px;font-family:'JetBrains Mono';font-size:14px;line-height:1.65;color:#E2E8F0;">
-          <div style="color:#64748B;margin-bottom:12px;border-bottom:1px solid #1E293B;padding-bottom:8px;">
-            To: Tariq Al-Mansoor &lt;tariq@apexcapital.ae&gt;<br>
-            Subject: Confirmation: Apex Capital Milestone 1 & Thursday Onboarding
-          </div>
+      <!-- Email Client Window with Full Realistic Body -->
+      <div style="background:#070B14;border:1px solid #1E293B;border-radius:14px;padding:18px 22px;font-family:'JetBrains Mono';font-size:13px;line-height:1.6;color:#E2E8F0;box-shadow:inset 0 2px 10px rgba(0,0,0,0.6);display:flex;flex-direction:column;gap:10px;">
+        <div style="color:#64748B;border-bottom:1px solid #1E293B;padding-bottom:8px;font-size:12px;line-height:1.5;">
+          <div><strong>To:</strong> Tariq Al-Mansoor &lt;tariq@apexcapital.ae&gt;</div>
+          <div><strong>From:</strong> Flávio Barros &lt;f.barros@wii-operations.com&gt;</div>
+          <div><strong>Subject:</strong> Confirmation: Apex Capital Milestone 1 & Thursday Onboarding</div>
+          <div style="color:#38BDF8;margin-top:2px;"><strong>Security:</strong> TLS 1.3 · Signed Private Key · Zero Tracking Pixels</div>
+        </div>
+        <div>
           Dear Tariq,<br><br>
-          Thank you for the update. We are pleased to confirm Milestone 1 ($50,000) under the agreed terms. Our technical delivery leads are already scheduled to kick off the executive onboarding session this Thursday at 10:00 AM GST.<br><br>
-          Looking forward to our kickoff.<br>
+          Thank you for the update. We are pleased to confirm Milestone 1 ($50,000 USD) under our agreed commercial terms.<br><br>
+          Our technical delivery leads are locked in to kick off the executive onboarding session this Thursday at 10:00 AM GST. We will review the initial telemetry and sprint milestone milestones together.<br><br>
+          Looking forward to an exceptional kickoff.<br><br>
           Best regards,<br>
-          <strong style="color:#38BDF8;">[Executive Leadership]</strong>
+          <strong style="color:#38BDF8;">Flávio Barros</strong><br>
+          <span style="color:#94A3B8;font-size:11.5px;">Founder & AI Solutions Architect · Dubai Operations</span>
         </div>
       </div>
 
-      <div style="display:flex;gap:14px;margin-top:18px;">
-        <div style="flex:1;background:rgba(56,189,248,0.12);border:1px solid #0284C7;border-radius:10px;padding:12px;text-align:center;font-size:13px;font-weight:700;color:#38BDF8;">
-          ⚡ Alternative 2-Sentence CEO Tone Available in 1-Click
+      <!-- Attachment Chips -->
+      <div style="display:flex;gap:10px;">
+        <div style="flex:1;background:#070B14;border:1px solid #1E293B;padding:8px 12px;border-radius:8px;font-family:'JetBrains Mono';font-size:11px;color:#CBD5E1;display:flex;align-items:center;gap:6px;">
+          <span>📄</span> <span>Apex_Milestone1_Scope_Signed.pdf (1.2 MB)</span>
+        </div>
+        <div style="flex:1;background:#070B14;border:1px solid #1E293B;padding:8px 12px;border-radius:8px;font-family:'JetBrains Mono';font-size:11px;color:#CBD5E1;display:flex;align-items:center;gap:6px;">
+          <span>📅</span> <span>Thu_10AM_GST_Calendar_Invite.ics</span>
         </div>
       </div>
+
+      <!-- 1-Click Tone Toggle & Security Hash -->
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;gap:8px;">
+          <div style="flex:1;background:rgba(56,189,248,0.15);border:1px solid #0284C7;border-radius:8px;padding:9px;text-align:center;font-size:11.5px;font-weight:700;color:#38BDF8;">
+            ✓ Formal Board Protocol (Active)
+          </div>
+          <div style="flex:1;background:#070B14;border:1px solid #1E293B;border-radius:8px;padding:9px;text-align:center;font-size:11.5px;font-weight:700;color:#94A3B8;">
+            ⚡ 2-Sentence CEO Memo
+          </div>
+          <div style="flex:1;background:#070B14;border:1px solid #1E293B;border-radius:8px;padding:9px;text-align:center;font-size:11.5px;font-weight:700;color:#94A3B8;">
+            🤝 Strategic Growth Focus
+          </div>
+        </div>
+        <div style="font-family:'JetBrains Mono';font-size:11px;color:#64748B;text-align:center;">
+          Immutable SHA-256 Draft Hash: 9f83a1b4e2... · Awaiting Step 03 Human Release Trigger
+        </div>
+      </div>
+
     </div>
 
   </div>
