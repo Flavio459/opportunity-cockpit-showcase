@@ -1,56 +1,67 @@
 # Opportunity Cockpit Showcase
 
-> Public portfolio showcase. The production/core system and personal operational data remain private.
+> Public executive showcase. The private Opportunity Cockpit, operational data, commercial rules and client workflows remain outside this repository.
 
-**Opportunity Cockpit** is an evidence-aware decision interface for professional opportunities. It demonstrates how AI-assisted analysis can support a human decision without inventing missing facts or automatically taking external action.
+## What this repository is
 
-## Problem
+The current public surface is an **Executive AI Command Center** designed to demonstrate how generative AI can support C-Suite operations without removing human control.
 
-Opportunity discovery produces too much information and too little decision clarity. A useful system must answer quickly:
+The showcase is intentionally static and uses synthetic scenarios. It demonstrates the interaction model, governance concepts, multilingual executive experience and selected implementation patterns; it is **not** the private operational Opportunity Cockpit and it does not perform real external dispatches.
 
-- Is this worth reviewing?
-- What is known versus missing?
-- Which requirements are supported by evidence?
-- What blocks the next action?
-- Is the recommendation reliable enough for human review?
+## Current experience
 
-## Solution
+The active showcase demonstrates:
 
-This showcase implements a safe, static version of the workflow:
+- executive intake and synthesis across three synthetic scenarios;
+- multilingual UX in English, Portuguese and Arabic, including RTL support;
+- deterministic **Human Decision Gate** before simulated external action;
+- governance and risk framing for controlled versus uncontrolled AI usage;
+- an audit-seal interaction after explicit human approval;
+- executive media assets and a 1080p walkthrough;
+- a low-friction **Sprint 01** commercial entry offer.
+
+The active runtime is implemented in `index.html`, `app.js` and `data/i18n.js`.
+
+## Public showcase flow
 
 ```text
-Discovery
-  -> Normalization
-  -> Evidence
-  -> AI Analysis
-  -> Fit
-  -> Evaluation
-  -> Decision
-  -> Proposal Preparation
-  -> Human Gate
+Synthetic Executive Input
+  -> Scenario / Context
+  -> AI Synthesis Simulation
+  -> Governance & Risk Review
+  -> Human Decision Gate
+  -> Simulated Dispatch
+  -> Audit Evidence
 ```
 
-The demo uses **synthetic companies, jobs and evidence only**.
+No real client action is executed by this repository.
 
-## What this proves
+## Relationship to the private Opportunity Cockpit
 
-- structured opportunity normalization;
-- explicit unknown / missing states;
-- evidence-aware fit assessment;
-- separation between fit and commercial conditions;
-- verifier warnings;
-- fail-closed human gate;
-- privacy-aware publication boundaries;
-- simple deployment with no backend or paid dependency.
+The **private Opportunity Cockpit** is the operational decision system for real opportunities, evidence, prioritization, proposal preparation, Human Gate and outcome learning.
 
-## What is intentionally not public
+Concepts such as Proposal Intelligence, commercial routing (`Principal`, `Quick Win`, `Productized Offer`), Wii Finance/V15 product operations, private scoring rules, real proposal history and operational memory belong primarily to the private system. They may be demonstrated publicly later only when that demonstration has a clear commercial purpose.
 
-- personal CVs and applications;
-- real client or recruiter data;
-- private scoring weights and strategic thresholds;
-- internal benchmarks, traces and outcomes;
-- provider credentials or infrastructure;
-- automation that submits applications or messages;
+This separation prevents the public portfolio from becoming a duplicate production system.
+
+## Legacy V1
+
+The repository still preserves the original opportunity-evaluation prototype under `legacy_v1/` and the synthetic dataset in `data/opportunities.json`.
+
+These assets document the earlier evolution of the project. They are **legacy material and are not part of the current Executive AI Command Center runtime**. They are retained for traceability; they should not be interpreted as the current architecture.
+
+## Publication boundary
+
+Public GitHub should prove the ability to design and build the system without publishing the valuable or sensitive operational core.
+
+Intentionally private:
+
+- personal CVs, applications and recruiter/client records;
+- real proposals and commercial negotiation history;
+- private scoring weights, thresholds and decision rules;
+- real opportunity outcomes and operational memory;
+- provider credentials, infrastructure and internal traces;
+- automation capable of submitting applications, messages or other external actions;
 - the private production repository.
 
 See [docs/PUBLICATION_BOUNDARY.md](docs/PUBLICATION_BOUNDARY.md).
@@ -67,24 +78,20 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 ## Security and truthfulness
 
-- No real secrets are required.
-- Demo data is synthetic.
-- Missing information stays missing.
-- Retrieval or keyword overlap is not treated as proof.
-- No performance, conversion, ROI or hiring claims are made.
-- External action remains behind a Human Gate.
+- The showcase uses synthetic scenarios and presentation data unless explicitly stated otherwise.
+- The Human Gate is a governance interaction; this static repository does not perform real dispatches.
+- Missing or private operational facts must not be invented to make the public demo look complete.
+- Public claims should be treated as showcase positioning unless backed by explicit evidence.
+- Private operational logic remains outside the showcase.
 
 ## Tech
 
-HTML · CSS · JavaScript · static JSON · evidence-oriented domain design
-
-The private implementation also explores provider-neutral AI boundaries, evaluation records, traces and outcome feedback, but those internals are not published here.
+HTML · CSS · JavaScript · static assets · multilingual data · deterministic UI interactions
 
 ## Author
 
 Flávio Souza Barros  
 Engineering × AI × Automation × Project Systems
-
 
 ## License / reuse
 
